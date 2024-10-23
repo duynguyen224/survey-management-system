@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Button extends Component
+class ButtonLink extends Component
 {
     public string $url;
     public string $icon;
@@ -21,6 +21,6 @@ class Button extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.button');
+        return view('components.button-link');
     }
 }

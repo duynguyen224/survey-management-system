@@ -30,12 +30,22 @@
     color: var(--sms-white);
 }
 
+.text-bs-body {
+    color: var(--bs-body-color);
+}
+
 .icon-button {
     cursor: pointer;
 }
 
-a {
-    color: var(--bs-body-color);
+/* Modal */
+.sms-modal-header {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.sms-modal-info {
+    font-size: 1rem;
 }
 
 /* Rounded pill */

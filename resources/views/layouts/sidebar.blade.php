@@ -46,7 +46,7 @@
             </a>
         </li>
 
-        <li class="{{ request()->is('admin/samples/*') ? 'active' : '' }} menu-item">
+        <li class="{{ request()->is('admin/sample*') ? 'active' : '' }} menu-item">
             <a href="{{ route('sample.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Sample screen</div>
