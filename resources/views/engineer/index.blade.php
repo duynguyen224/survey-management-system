@@ -1,11 +1,7 @@
 @extends('layouts.main-layout')
 
-@section('title', 'Home')
-
-@section('breadcrumb')
-    <p>Home > Dashboard</p>
-@endsection
+@section('title', 'Engineers')
 
 @section('content')
-    <p>Engineer</p>
+    Engineers
 @endsection

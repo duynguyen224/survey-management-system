@@ -1,0 +1,76 @@
+:root {
+    --sms-white: #fff;
+    --sms-primary-green: #15a828;
+    --sms-primary-orange: #dd681a;
+    --sms-secondary-orange: #f7a297;
+    --sms-primary-black: #353f45;
+    --sms-primary-blue: #4285f4;
+    --sms-primary-purple: #605bff;
+    --sms-primary-gray: #ececec;
+    --sms-secondary-gray: #c4c4c4;
+    --sms-tertiary-gray: #9796a7;
+
+    --bs-body-color: #697a8d;
+}
+
+/* Common */
+.text-tertiary-gray {
+    color: var(--sms-tertiary-gray);
+}
+
+.text-primary-green {
+    color: var(--sms-primary-green);
+}
+
+.text-primary-blue {
+    color: var(--sms-primary-blue);
+}
+
+.text-white {
+    color: var(--sms-white);
+}
+
+.icon-button {
+    cursor: pointer;
+}
+
+a {
+    color: var(--bs-body-color);
+}
+
+/* Rounded pill */
+.sms-rounded-pill {
+    border: 1px solid var(--sms-secondary-gray);
+    border-radius: 0.8rem;
+    padding: 0.3rem 0.7rem;
+}
+
+.sms-rounded-pill.active {
+    background-color: var(--sms-primary-green);
+    color: var(--sms-white);
+}
+
+.sms-rounded-pill.hover:hover {
+    color: var(--sms-white);
+    cursor: pointer;
+}
+
+.sms-rounded-pill.green:hover {
+    background-color: var(--sms-primary-green);
+}
+
+.sms-rounded-pill.black {
+    background-color: var(--sms-primary-black);
+}
+
+.sms-rounded-pill.orange {
+    background-color: var(--sms-primary-orange);
+}
+
+.sms-rounded-pill.secondary-gray {
+    background-color: var(--sms-secondary-gray);
+}
+
+.sms-rounded-pill.secondary-orange {
+    background-color: var(--sms-secondary-orange);
+}

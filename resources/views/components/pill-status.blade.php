@@ -1,0 +1,1 @@
+<span class="sms-rounded-pill mx-1 text-white {{ $colorClass }}">{{ $label }}</span>

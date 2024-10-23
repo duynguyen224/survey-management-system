@@ -1,7 +1,7 @@
 @extends('layouts.main-layout')
 
-@section('title', 'Users')
+@section('title', 'Sample create')
 
 @section('content')
-
+    Create
 @endsection

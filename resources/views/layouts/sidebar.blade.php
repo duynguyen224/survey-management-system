@@ -1,7 +1,7 @@
 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo mb-5">
         <a href="{{ route('home.index') }}" class="app-brand-link">
-            <img src="{{ asset('pe-bank-logo.png') }}" alt="">
+            <img src="{{ asset('sms/img/pe-bank-logo.png') }}" alt="pe-bank logo" width="200">
         </a>
         <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
             <i class="bx bx-chevron-left bx-sm align-middle"></i>
@@ -43,6 +43,13 @@
             <a href="{{ route('users.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Change password</div>
+            </a>
+        </li>
+
+        <li class="{{ request()->is('admin/samples/*') ? 'active' : '' }} menu-item">
+            <a href="{{ route('sample.index') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Analytics">Sample screen</div>
             </a>
         </li>
     </ul>

@@ -4,11 +4,14 @@
 
 @section('content')
     <div class="container">
-        <div class="authentication-wrapper authentication-basic container-p-y">
-            <div class="authentication-inner">
-                <div class="card">
-                    <div class="card-body">
-                        <form action="{{ route('auth.login') }}" method="POST" class="mb-3">
+        <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+            <div>
+                <div class="mb-3">
+                    <img src="{{ asset('sms/img/pe-bank-logo.png') }}" alt="pe-bank logo" width="250">
+                </div>
+                <div class="row align-items-end">
+                    <div class="col-4">
+                        <form action="{{ route('auth.login') }}" method="POST">
                             @csrf
                             @error('invalid_credential')
                                 <div class="text-danger">{{ $message }}</div>
@@ -44,6 +47,11 @@
                                 <button class="btn btn-primary d-grid w-100" type="submit">Log in</button>
                             </div>
                         </form>
+                    </div>
+                    <div class="col-2"></div>
+                    <div class="col-6">
+                        <img src="{{ asset('sms/img/pe-bank-login-illutration.png') }}" alt="login-illutration"
+                            width="500">
                     </div>
                 </div>
             </div>
