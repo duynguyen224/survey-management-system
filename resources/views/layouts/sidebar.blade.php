@@ -54,13 +54,15 @@
         </li>
     </ul>
 
-    <div class="d-flex justify-content-center mb-3">
+    <div class="d-flex justify-content-center mb-2">
         <form action="{{ route('auth.logout') }}" method="POST">
             @csrf
-            <button type="submit" class="btn btn-primary">
-                <i class="fa-solid fa-arrow-right-from-bracket me-3"></i>
-                <span>Logout</span>
-            </button>
+            <div class="d-grid col-12 mx-auto">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-arrow-right-from-bracket me-3"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
         </form>
     </div>
 </aside>

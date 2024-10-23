@@ -1,5 +1,6 @@
 :root {
     --sms-white: #fff;
+    --sms-black: #000;
     --sms-primary-green: #15a828;
     --sms-primary-orange: #dd681a;
     --sms-secondary-orange: #f7a297;
@@ -30,6 +31,10 @@
     color: var(--sms-white);
 }
 
+.text-black {
+    color: var(--sms-black);
+}
+
 .text-bs-body {
     color: var(--bs-body-color);
 }
@@ -48,6 +53,10 @@
     font-size: 1rem;
 }
 
+.sms-flex-basis-0 {
+    flex-basis: 0px;
+}
+
 /* Rounded pill */
 .sms-rounded-pill {
     border: 1px solid var(--sms-secondary-gray);
@@ -57,11 +66,11 @@
 
 .sms-rounded-pill.active {
     background-color: var(--sms-primary-green);
-    color: var(--sms-white);
+    color: var(--sms-white) !important;
 }
 
 .sms-rounded-pill.hover:hover {
-    color: var(--sms-white);
+    color: var(--sms-white) !important;
     cursor: pointer;
 }
 

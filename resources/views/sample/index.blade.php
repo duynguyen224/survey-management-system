@@ -64,7 +64,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-email-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024.10.18" />
                         </td>
                         <td>
                             <x-dropdown-menu>
@@ -87,7 +87,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-email-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024.10.18" />
                         </td>
                         <td>
                             <x-dropdown-menu>
@@ -110,7 +110,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-email-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024.10.18" />
                         </td>
                         <td>
                             <x-dropdown-menu>
@@ -133,7 +133,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-email-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024.10.18" />
                         </td>
                         <td>
                             <x-dropdown-menu>
@@ -187,10 +187,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                            Close
-                        </button>
+                        <button type="button" class="btn btn-primary flex-grow-1 flex-shrink-1 sms-flex-basis-0">Save changes</button>
+                        <button type="button" class="btn btn-secondary flex-grow-1 flex-shrink-1 sms-flex-basis-0"data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

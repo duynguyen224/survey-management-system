@@ -70,7 +70,7 @@ body {
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
-  color: var(--bs-body-color);
+  color: var(--bs-black-rgb);
   text-align: var(--bs-body-text-align);
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
@@ -94,7 +94,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 1rem;
   font-weight: 500;
   line-height: 1.1;
-  color: #566a7f;
+  color: var(--bs-black-rgb);
 }
 
 h1, .h1 {
@@ -1949,11 +1949,11 @@ progress {
   --bs-table-striped-bg: #f9fafb;
   --bs-table-active-color: #697a8d;
   --bs-table-active-bg: rgba(67, 89, 113, 0.1);
-  --bs-table-hover-color: #697a8d;
+  --bs-table-hover-color: var(--bs-black-rgb);
   --bs-table-hover-bg: rgba(67, 89, 113, 0.06);
   width: 100%;
   margin-bottom: 1rem;
-  color: #697a8d;
+  color: var(--bs-black-rgb);
   vertical-align: middle;
   border-color: #d9dee3;
 }
@@ -2145,7 +2145,7 @@ progress {
   margin-bottom: 0.5rem;
   font-size: 0.75rem;
   font-weight: 500;
-  color: #566a7f;
+  color: var(--bs-black-rgb);
 }
 
 .col-form-label {
@@ -2155,7 +2155,7 @@ progress {
   font-size: inherit;
   font-weight: 500;
   line-height: 1.53;
-  color: #566a7f;
+  color: var(--bs-black-rgb);
 }
 
 .col-form-label-lg {
@@ -6228,7 +6228,7 @@ a.invert-bg-dark:hover, a.invert-bg-dark:focus {
   letter-spacing: 1px; */
 }
 .table:not(.table-dark) th {
-  color: #566a7f;
+  color: var(--bs-black-rgb);
 }
 
 .table-border-bottom-0 tr:last-child td,

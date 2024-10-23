@@ -55,18 +55,18 @@
 </head>
 
 <body>
-    @yield('guest-content')
-
-    <div class="layout-wrapper layout-content-navbar">
+    <div class="layout-wrapper layout-content-navbar" style="max-height: 100vh; max-width: 100vw; overflow-x: hidden;">
         <div class="layout-container">
             @include('layouts.sidebar')
             <div class="layout-page">
                 @include('layouts.navbar')
                 <div class="content-wrapper">
-                    <div class="flex-grow-1" style="padding: 0.5rem;">
-                        @yield('breadcrumb')
-                        @yield('content')
-                        @include('layouts.flash-message')
+                    <div class="flex-grow-1">
+                        <div style="padding: 0.5rem;">
+                            @yield('breadcrumb')
+                            @yield('content')
+                            @include('layouts.flash-message')
+                        </div>
                     </div>
                 </div>
             </div>
