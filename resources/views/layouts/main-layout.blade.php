@@ -62,7 +62,7 @@
                 @include('layouts.navbar')
                 <div class="content-wrapper">
                     <div class="flex-grow-1">
-                        <div style="padding: 0.5rem;">
+                        <div class="sms-main-content" style="padding: 0.5rem; min-height: 100vh;">
                             @yield('breadcrumb')
                             @yield('content')
                             @include('layouts.flash-message')

@@ -3,13 +3,13 @@
 @section('title', 'Sample list')
 
 @section('content')
-    <section class="d-flex justify-content-between align-items-center">
+    <x-page-header>
         <x-page-title title="Sample list" />
         <div class="d-flex gap-1">
-            <x-input-search id="inp-search" name="inp-search" placeholder="Search ..." />
+            <x-input-search id="input-search" name="input-search" placeholder="Search ..." />
             <x-button-link url="{{ route('sample.create') }}" label="Add new" icon='<i class="fa-solid fa-plus me-1"></i>' />
         </div>
-    </section>
+    </x-page-header>
 
     <section class="sms-search">
         <p class="my-4">Filter</p>
@@ -187,8 +187,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary flex-grow-1 flex-shrink-1 sms-flex-basis-0">Save changes</button>
-                        <button type="button" class="btn btn-secondary flex-grow-1 flex-shrink-1 sms-flex-basis-0"data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary flex-grow-1 flex-shrink-1 sms-flex-basis-0">Save
+                            changes</button>
+                        <button type="button"
+                            class="btn btn-secondary flex-grow-1 flex-shrink-1 sms-flex-basis-0"data-bs-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

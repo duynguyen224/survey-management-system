@@ -14,6 +14,12 @@
     --bs-body-color: #697a8d;
 }
 
+/* */
+.sms-page-body{
+    /* 100 vh - headerHeight - footerHeight - padding */
+    min-height: calc(100vh - 40px - 55px - 16px);
+}
+
 /* Common */
 .text-tertiary-gray {
     color: var(--sms-tertiary-gray);
@@ -41,6 +47,10 @@
 
 .icon-button {
     cursor: pointer;
+}
+
+.sms-empty-space{
+    height: 110px;
 }
 
 /* Modal */

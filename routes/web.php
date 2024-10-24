@@ -69,6 +69,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/{user}/edit', 'edit')->name('users.edit');
                 Route::put('/{user}', 'update')->name('users.update');
                 Route::delete('/{user}', 'destroy')->name('users.destroy');
+
+                Route::get('/change-password', 'changePassword')->name('users.change-password');
             });
         });
 
