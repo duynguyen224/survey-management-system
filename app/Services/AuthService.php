@@ -3,16 +3,16 @@
 namespace App\Services;
 
 use App\DTOs\Login\LoginRequest;
-use App\DTOs\SmsResponse;
+use App\DTOs\SmsWebResponse;
 use App\Services\Interfaces\IAuthService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class AuthService implements IAuthService
 {
-  public function login(LoginRequest $request): SmsResponse
+  public function login(LoginRequest $request): SmsWebResponse
   {
-    $res = new SmsResponse();
+    $res = new SmsWebResponse();
 
     $data = $request->all();
 
@@ -26,9 +26,9 @@ class AuthService implements IAuthService
     return $res;
   }
 
-  public function logout(): SmsResponse
+  public function logout(): SmsWebResponse
   {
-    $res = new SmsResponse();
+    $res = new SmsWebResponse();
 
     Session::flush();
     Auth::logout();

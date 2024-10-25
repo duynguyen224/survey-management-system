@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Helper\Helper;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -12,7 +13,7 @@ class CalendarIconText extends Component
 
     public function __construct(string $text)
     {
-        $this->text = $text;
+        $this->text = Helper::formatDate($text);
     }
 
     public function render(): View|Closure|string

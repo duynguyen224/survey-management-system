@@ -96,6 +96,9 @@
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
+    {{-- Sms js libs --}}
+    <script src="{{ asset('libs/jquery-validate/jquery-validate.min.js') }}"></script>
+
     {{-- Common javascript --}}
     <script src="{{ asset('sms/js/common.js') }}"></script>
 

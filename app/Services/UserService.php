@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
-use App\DTOs\SmsResponse;
+use App\DTOs\SmsApiResponse;
+use App\DTOs\SmsWebResponse;
 use App\DTOs\User\UserUpSertRequest;
+use App\Enums\HttpStatusCode;
 use App\Models\User;
 use App\Services\Interfaces\IPaginationService;
 use App\Services\Interfaces\IUserService;
@@ -18,48 +20,86 @@ class UserService implements IUserService
     $this->paginationService = $paginationService;
   }
 
-  public function index(Request $request)
+  public function index(Request $request): SmsWebResponse
   {
-    $res = new SmsResponse;
+    $res = new SmsWebResponse;
 
     $users = User::query();
 
     // Paginate
     $users = $this->paginationService->paginate($users, $request);
 
-    return $users;
-  }
-
-  public function show($id)
-  {
-    $res = new SmsResponse;
-
-    $user = User::find($id);
-
-    return $user;
-  }
-
-  public function store(UserUpSertRequest $request)
-  {
-    $res = new SmsResponse;
-
-    $user = null;
+    // Prepare response
+    $res = $res->setIsSuccess(true)
+      ->setMessage(__('user.Get users successfully'))
+      ->setData($users);
 
     return $res;
   }
 
-  public function update(UserUpSertRequest $request, $id)
+  public function createOrUpdate(UserUpSertRequest $request): SmsApiResponse
   {
-    $res = new SmsResponse;
+    $res = new SmsApiResponse;
 
-    $user = User::find($id);
+    $data = $request->all();
+    $id = $data['userId'];
+    $name = $data['name'];
+    $email = $data['email'];
+
+    if ($id == 0) { // Case create
+      $user = User::create([
+        'name' => $name,
+        'email' => $email,
+        'password' => bcrypt('123456')
+      ]);
+
+      $res = $res->setIsSuccess(true)
+        ->setStatusCode(HttpStatusCode::CREATED->value)
+        ->setMessage(__('user.Create user successfully'))
+        ->setData($user);
+    } else { // Case update
+      $user = User::find($id);
+
+      if (!$user) {
+        $res = $res->setIsSuccess(false)
+          ->setStatusCode(HttpStatusCode::NOT_FOUND->value)
+          ->setMessage(__('user.User not found'));
+      } else {
+        $user->update([
+          'name' => $name,
+          'email' => $email,
+          'password' => bcrypt('123456')
+        ]);
+
+        $res = $res->setIsSuccess(true)
+          ->setStatusCode(HttpStatusCode::OK->value)
+          ->setMessage(__('user.Update user successfully'))
+          ->setData($user);
+      }
+    }
 
     return $res;
   }
 
-  public function destroy($id)
+  public function destroy(Request $request): SmsApiResponse
   {
-    $res = new SmsResponse;
+    $res = new SmsApiResponse;
+
+    $data = $request->all();
+    $userIds = $data['userIds'] ?? null;
+
+    $arrUserIds = explode(",", $userIds);
+
+    if (!empty($arrUserIds)) {
+      User::whereIn('id', $arrUserIds)->delete();
+
+      $res = $res->setIsSuccess(true)
+        ->setStatusCode(HttpStatusCode::OK->value)
+        ->setMessage(__('user.Delete user(s) successfully'));
+    } else {
+      $res = $res->setStatusCode(HttpStatusCode::BAD_REQUEST)
+        ->setMessage('user.User not found');
+    }
 
     return $res;
   }

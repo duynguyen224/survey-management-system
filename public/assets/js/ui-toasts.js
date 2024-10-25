@@ -31,7 +31,7 @@
       selectedPlacement = document.querySelector('#selectPlacement').value.split(' ');
 
       toastPlacementExample.classList.add(selectedType);
-      DOMTokenList.prototype.add.apply(toastPlacementExample.classList, selectedPlacement);
+      DOMTokenList.prototype.add.apply(toastPlacementExample.classList, ['top-0', 'end-0']);
       toastPlacement = new bootstrap.Toast(toastPlacementExample);
       toastPlacement.show();
     };

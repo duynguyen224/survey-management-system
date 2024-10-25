@@ -2,18 +2,16 @@
 
 namespace App\Services\Interfaces;
 
+use App\DTOs\SmsApiResponse;
+use App\DTOs\SmsWebResponse;
 use App\DTOs\User\UserUpSertRequest;
 use Illuminate\Http\Request;
 
 interface IUserService
 {
-  public function index(Request $request);
+  public function index(Request $request) : SmsWebResponse;
 
-  public function show($id);
+  public function createOrUpdate(UserUpSertRequest $request) : SmsApiResponse;
 
-  public function store(UserUpSertRequest $request);
-
-  public function update(UserUpSertRequest $request, $id);
-
-  public function destroy($id);
+  public function destroy(Request $request) : SmsApiResponse;
 }

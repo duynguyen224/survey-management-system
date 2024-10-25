@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\SmsApiResponse;
 use App\DTOs\User\UserUpSertRequest;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
@@ -17,35 +18,22 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
-        $users = $this->userService->index($request);
+        $res = $this->userService->index($request);
+        $users = $res->getData();
 
         return view('user.index', compact('users'));
     }
 
-    public function show($id)
+    public function createOrUpdate(UserUpSertRequest $request)
     {
-        $res = $this->userService->show($id);
-
-        return $res;
-    }
-
-    public function store(UserUpSertRequest $request)
-    {
-        $res = $this->userService->store($request);
+        $res = $this->userService->createOrUpdate($request);
 
         return $res->toJsonResponse();
     }
 
-    public function update(UserUpSertRequest $request, $id)
+    public function destroy(Request $request)
     {
-        $res = $this->userService->update($request, $id);
-
-        return $res->toJsonResponse();
-    }
-
-    public function destroy($id)
-    {
-        $res = $this->userService->destroy($id);
+        $res = $this->userService->destroy($request);
 
         return $res->toJsonResponse();
     }

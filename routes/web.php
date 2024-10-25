@@ -63,12 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::controller(UserController::class)->group(function () {
             Route::group(['prefix' => 'users'], function () {
                 Route::get('/', 'index')->name('users.index');
-                Route::get('/create', 'create')->name('users.create');
-                Route::post('/', 'store')->name('users.store');
-                Route::get('/{user}', 'show')->name('users.show');
-                Route::get('/{user}/edit', 'edit')->name('users.edit');
-                Route::put('/{user}', 'update')->name('users.update');
-                Route::delete('/{user}', 'destroy')->name('users.destroy');
+                Route::post('/create-or-update/{id}', 'createOrUpdate')->name('users.createOrUpdate');
+                Route::post('/destroy', 'destroy')->name('users.destroy');
 
                 Route::get('/change-password', 'changePassword')->name('users.change-password');
             });

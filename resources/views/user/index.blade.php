@@ -5,7 +5,7 @@
 @section('content')
     <x-page-header>
         <x-page-title title="Users" />
-        <x-button-modal label="Add new" icon='<i class="fa-solid fa-plus me-1"></i>' modalId="modal-create-user" />
+        <x-button-modal id="btnAdd" label="Add new" icon='<i class="fa-solid fa-plus me-1"></i>' modalId="modalUpSertUser" />
     </x-page-header>
 
     <x-page-body>
@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <th width="1%">
-                            <input class="form-check-input" type="checkbox" checked="">
+                            <input class="form-check-input" type="checkbox" id="checkAll">
                         </th>
                         <th width="15%">Name</th>
                         <th width="15%">Email</th>
@@ -31,25 +31,27 @@
                 </thead>
                 <tbody>
                     @foreach ($users as $item)
-                        <tr>
+                        <tr data-user-id="{{ $item->id }}" data-name="{{ $item->name }}"
+                            data-email="{{ $item->email }}">
                             <td>
-                                <input class="form-check-input" type="checkbox" checked="">
+                                <input class="form-check-input rowCheckbox" type="checkbox">
                             </td>
                             <td>
                                 {{ $item->name }}
                             </td>
                             <td>
                                 <x-email-icon-text text="{{ $item->email }}" />
+
                             </td>
                             <td>
-                                <x-calendar-icon-text text="2024.10.18" />
+                                <x-calendar-icon-text text="{{ $item->created_at }}" />
                             </td>
                             <td>
                                 <x-dropdown-menu>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i>
-                                        Edit</a>
-                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>
-                                        Delete</a>
+                                    <x-dropdown-item id="" class="btnEdit"
+                                        icon='<i class="bx bx-edit-alt me-1"></i>' label="Edit" />
+                                    <x-dropdown-item id="" class="btnDelete"
+                                        icon='<i class="bx bx-trash me-1"></i>' label="Delete" />
                                 </x-dropdown-menu>
                             </td>
                         </tr>
@@ -63,8 +65,8 @@
         {{ $users->withQueryString()->links() }}
     </x-page-footer>
 
-    <!-- Modal create -->
-    <div class="modal fade" id="modal-create-user" tabindex="-1" aria-hidden="true">
+    <!-- Modal create or update user -->
+    <div class="modal fade" id="modalUpSertUser" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -72,28 +74,63 @@
                     <i class="fa-solid fa-x icon-button" data-bs-dismiss="modal"></i>
                 </div>
                 <div class="text-center">
-                    <h5 class="sms-modal-header">Create new user</h5>
-                    <p class="mb-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
-                    <p>quas sit repellat voluptates animi</p>
+                    <h5 class="sms-modal-header headerCreateUser">管理ユーザー情報新規登録</h5>
+                    <h5 class="sms-modal-header headerUpdateUser">管理ユーザー情報変更</h5>
+                    <p>新規登録に必要な情報を入力の上、登録ボタンをクリックしてください。</p>
                 </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="name" class="form-label">Name</label>
-                            <input type="text" id="name" class="form-control" placeholder="Enter name" />
+                <form id="formUpSertUser">
+                    @csrf
+                    <div class="modal-body">
+                        <input type="hidden" name="userId" id="userId" value="">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="text" name="name" id="name" class="form-control"
+                                    placeholder="Enter name" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="text" name="email" id="email" class="form-control"
+                                    placeholder="Enter email" />
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="text" id="email" class="form-control" placeholder="Enter email" />
-                        </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary col-6">Register</button>
                     </div>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary col-6">Save changes</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
+
+    {{-- Modal confirm delete --}}
+    <div class="modal fade" id="modalConfirmDeleteUser" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <i class="fa-solid fa-x icon-button" data-bs-dismiss="modal"></i>
+                </div>
+                <div class="text-center">
+                    <h5 class="sms-modal-header">Delete selected users?</h5>
+                    <p>新規登録に必要な情報を入力の上、登録ボタンをクリックしてください。</p>
+                </div>
+                <form id="formConfirmDeleteUser">
+                    <div class="modal-body">
+                        <input type="hidden" name="userIds" id="userIds" value="">
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="submit" class="btn btn-danger col-6">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('sms/js/user/form-upsert-delete.js') }}"></script>
+    <script src="{{ asset('sms/js/user/index.js') }}"></script>
 @endsection

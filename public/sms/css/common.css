@@ -15,7 +15,7 @@
 }
 
 /* */
-.sms-page-body{
+.sms-page-body {
     /* 100 vh - headerHeight - footerHeight - padding */
     min-height: calc(100vh - 40px - 55px - 16px);
 }
@@ -49,8 +49,13 @@
     cursor: pointer;
 }
 
-.sms-empty-space{
+.sms-empty-space {
     height: 110px;
+}
+
+/* Dropdown item */
+.cms-dropdown-item {
+    cursor: pointer;
 }
 
 /* Modal */

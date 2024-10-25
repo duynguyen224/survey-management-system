@@ -3,10 +3,10 @@
 namespace App\Services\Interfaces;
 
 use App\DTOs\Login\LoginRequest;
-use App\DTOs\SmsResponse;
+use App\DTOs\SmsWebResponse;
 
 interface IAuthService
 {
-  public function login(LoginRequest $request): SmsResponse;
-  public function logout(): SmsResponse;
+  public function login(LoginRequest $request): SmsWebResponse;
+  public function logout(): SmsWebResponse;
 }
