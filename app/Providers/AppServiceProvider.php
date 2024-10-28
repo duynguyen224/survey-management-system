@@ -28,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::defaultView('pagination.sms-bootstrap-5');
+        Paginator::defaultView('components.tables.pagination');
     }
 }

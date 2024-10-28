@@ -15,6 +15,13 @@ class MySqlBaseModel extends Model
   protected $connection = 'mysql';
   protected $dateFormat = Constants::FORMAT_FULL_DATE_TIME;
 
+  protected $fillable = [
+    'created_by_id',
+    'created_by_name',
+    'updated_by_id',
+    'updated_by_name'
+  ];
+
   protected static function booted(): void
   {
     $user = Auth::user();

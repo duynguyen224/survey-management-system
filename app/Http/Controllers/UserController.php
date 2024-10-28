@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\SmsApiResponse;
 use App\DTOs\User\UserUpSertRequest;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
@@ -28,13 +27,25 @@ class UserController extends Controller
     public function createOrUpdate(UserUpSertRequest $request)
     {
         $res = $this->userService->createOrUpdate($request);
-        
+
+        if ($res->getIsSuccess()) {
+            Session::flash('success', $res->getMessage());
+        } else {
+            Session::flash('error', $res->getMessage());
+        }
+
         return $res->toJsonResponse();
     }
 
     public function destroy(Request $request)
     {
         $res = $this->userService->destroy($request);
+
+        if ($res->getIsSuccess()) {
+            Session::flash('success', $res->getMessage());
+        } else {
+            Session::flash('error', $res->getMessage());
+        }
 
         return $res->toJsonResponse();
     }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Models\BaseModels\MySqlBaseModel;
 
-class Company extends MySqlBaseModel
+class Agency extends MySqlBaseModel
 {
-    protected $table = 'companies';
+    protected $table = 'agencies';
 }

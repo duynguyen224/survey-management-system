@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Pages;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -15,6 +15,6 @@ class PageBody extends Component
 
     public function render(): View|Closure|string
     {
-        return view('components.page-body');
+        return view('components.pages.page-body');
     }
 }

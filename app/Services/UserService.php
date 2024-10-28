@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Services\Interfaces\IPaginationService;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserService implements IUserService
 {
@@ -24,7 +25,7 @@ class UserService implements IUserService
   {
     $res = new SmsWebResponse;
 
-    $users = User::query();
+    $users = User::where('agency_id', Auth::user()->agency_id);
 
     // Paginate
     $users = $this->paginationService->paginate($users, $request);
@@ -50,7 +51,8 @@ class UserService implements IUserService
       $user = User::create([
         'name' => $name,
         'email' => $email,
-        'password' => bcrypt('123456')
+        'password' => bcrypt('123456'),
+        'agency_id' => Auth::user()->agency_id,
       ]);
 
       $res = $res->setIsSuccess(true)

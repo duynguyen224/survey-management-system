@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Role as RoleEnum;
 use App\Models\Role;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class RoleSeeder extends Seeder
@@ -13,7 +13,11 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $roles = ['System Admin', 'Company Admin', 'User'];
+        $roles = [
+            RoleEnum::SystemAdmin->value,
+            RoleEnum::AgencyAdmin->value,
+            RoleEnum::User->value
+        ];
 
         foreach ($roles as $roleName) {
             Role::create([

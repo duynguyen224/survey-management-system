@@ -10,49 +10,51 @@
 
     <div class="menu-inner-shadow"></div>
 
-    <ul class="menu-inner py-1">
-        <li class="{{ request()->is('admin/engineers*') ? 'active' : '' }} menu-item">
-            <a href="{{ route('engineers.index') }}" class="menu-link d-flex gap-2">
-                <i class="fa-fw fa-solid fa-person"></i>
-                <div data-i18n="Analytics">Engineers</div>
-            </a>
-        </li>
+    @hasanyrole('Agency Admin')
+        <ul class="menu-inner py-1">
+            <li class="{{ request()->is('admin/engineers*') ? 'active' : '' }} menu-item">
+                <a href="{{ route('engineers.index') }}" class="menu-link d-flex gap-2">
+                    <i class="fa-fw fa-solid fa-person"></i>
+                    <div data-i18n="Analytics">Engineers</div>
+                </a>
+            </li>
 
-        <li class="{{ request()->is('admin/companies*') ? 'active' : '' }} menu-item">
-            <a href="{{ route('companies.index') }}" class="menu-link d-flex gap-2">
-                <i class="fa-fw fa-solid fa-house-chimney-medical"></i>
-                <div data-i18n="Analytics">Companies</div>
-            </a>
-        </li>
+            <li class="{{ request()->is('admin/companies*') ? 'active' : '' }} menu-item">
+                <a href="{{ route('companies.index') }}" class="menu-link d-flex gap-2">
+                    <i class="fa-fw fa-solid fa-house-chimney-medical"></i>
+                    <div data-i18n="Analytics">Companies</div>
+                </a>
+            </li>
 
-        <li class="{{ request()->is('admin/surveys*') ? 'active' : '' }} menu-item">
-            <a href="{{ route('surveys.index') }}" class="menu-link d-flex gap-2">
-                <i class="fa-fw fa-regular fa-clipboard"></i>
-                <div data-i18n="Analytics">Surveys</div>
-            </a>
-        </li>
+            <li class="{{ request()->is('admin/surveys*') ? 'active' : '' }} menu-item">
+                <a href="{{ route('surveys.index') }}" class="menu-link d-flex gap-2">
+                    <i class="fa-fw fa-regular fa-clipboard"></i>
+                    <div data-i18n="Analytics">Surveys</div>
+                </a>
+            </li>
 
-        <li class="{{ request()->is('admin/users*') ? 'active' : '' }} menu-item">
-            <a href="{{ route('users.index') }}" class="menu-link d-flex gap-2">
-                <i class="fa-fw fa-solid fa-gear"></i>
-                <div data-i18n="Analytics">Users</div>
-            </a>
-        </li>
+            <li class="{{ request()->is('admin/users*') ? 'active' : '' }} menu-item">
+                <a href="{{ route('users.index') }}" class="menu-link d-flex gap-2">
+                    <i class="fa-fw fa-solid fa-gear"></i>
+                    <div data-i18n="Analytics">Users</div>
+                </a>
+            </li>
 
-        <li class="{{ request()->is('admin/users/change-password*') ? 'active' : '' }} menu-item">
-            <a href="{{ route('users.change-password') }}" class="menu-link d-flex gap-2">
-                <i class="fa-fw fa-solid fa-key"></i>
-                <div data-i18n="Analytics">Change password</div>
-            </a>
-        </li>
+            <li class="{{ request()->is('admin/users/change-password*') ? 'active' : '' }} menu-item">
+                <a href="{{ route('users.change-password') }}" class="menu-link d-flex gap-2">
+                    <i class="fa-fw fa-solid fa-key"></i>
+                    <div data-i18n="Analytics">Change password</div>
+                </a>
+            </li>
 
-        <li class="{{ request()->is('admin/sample*') ? 'active' : '' }} menu-item">
-            <a href="{{ route('sample.index') }}" class="menu-link d-flex gap-2">
-                <i class="fa-fw fa-solid fa-seedling"></i>
-                <div data-i18n="Analytics">Sample screen</div>
-            </a>
-        </li>
-    </ul>
+            <li class="{{ request()->is('admin/sample*') ? 'active' : '' }} menu-item">
+                <a href="{{ route('sample.index') }}" class="menu-link d-flex gap-2">
+                    <i class="fa-fw fa-solid fa-seedling"></i>
+                    <div data-i18n="Analytics">Sample screen</div>
+                </a>
+            </li>
+        </ul>
+    @endhasanyrole
 
     <div class="d-flex justify-content-center mb-2">
         <form action="{{ route('auth.logout') }}" method="POST">
