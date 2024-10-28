@@ -1,3 +1,1 @@
-<div>
-    <span class="fw-bold fs-3">{{ $title }}</span>
-</div>
+<span class="fw-bold fs-3 {{ $extraClass }}">{{ $title }}</span>

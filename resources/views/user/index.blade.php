@@ -17,7 +17,7 @@
         <x-tables.table>
             <x-slot:tableHead>
                 <th width="1%">
-                    <input class="form-check-input" type="checkbox" id="checkAll">
+                    <x-form-controls.checkbox id="checkAll"/>
                 </th>
                 <th width="15%">Name</th>
                 <th width="15%">Email</th>
@@ -29,9 +29,9 @@
 
             <x-slot:tableBody>
                 @foreach ($users as $item)
-                    <tr data-user-id="{{ $item->id }}" data-name="{{ $item->name }}" data-email="{{ $item->email }}">
+                    <tr data-record-id="{{ $item->id }}" data-name="{{ $item->name }}" data-email="{{ $item->email }}">
                         <td>
-                            <input class="form-check-input rowCheckbox" type="checkbox">
+                            <x-form-controls.checkbox id="{{ $item->id }}" extraClass="rowCheckbox"/>
                         </td>
                         <td>
                             {{ $item->name }}
@@ -90,12 +90,7 @@
     </x-modals.modal-create-or-update>
 
     {{-- Modal confirm delete --}}
-    <x-modals.modal-confirm-delete modalId="modalConfirmDeleteUser" formId="formConfirmDeleteUser"
-        warningMessage="Are you sure want to delete user(s)?">
-        <x-slot:formBody>
-            <input type="hidden" name="userIds" id="userIds" value="">
-        </x-slot:formBody>
-    </x-modals.modal-confirm-delete>
+    <x-modals.modal-confirm-delete warningMessage="Are you sure want to delete user(s)?" />
 
 @endsection
 

@@ -88,7 +88,7 @@ class UserService implements IUserService
     $res = new SmsApiResponse;
 
     $data = $request->all();
-    $userIds = $data['userIds'] ?? null;
+    $userIds = $data['recordIds'] ?? null;
 
     $arrUserIds = explode(",", $userIds);
 

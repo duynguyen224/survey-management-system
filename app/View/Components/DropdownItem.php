@@ -12,13 +12,15 @@ class DropdownItem extends Component
     public string $class;
     public string $icon;
     public string $label;
+    public string $href;
 
-    public function __construct(string $id, string $class, string $icon, string $label)
+    public function __construct(string $id, string $class, string $icon, string $label, string $href='')
     {
         $this->id = $id;
         $this->class = $class;
         $this->icon = $icon;
         $this->label = $label;
+        $this->href = $href;
     }
 
     /**

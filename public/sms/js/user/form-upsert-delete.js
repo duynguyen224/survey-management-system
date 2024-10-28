@@ -47,7 +47,7 @@ jQuery(function ($) {
         },
     });
 
-    $('#formConfirmDeleteUser').validate({
+    $('#formConfirmDelete').validate({
         submitHandler: function (form) {
             const formData = $(form).serialize();
             const url = SMS_USER_DELETE_API;

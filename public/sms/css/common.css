@@ -11,13 +11,15 @@
     --sms-secondary-gray: #c4c4c4;
     --sms-tertiary-gray: #9796a7;
 
+    --sms-bg-color: #fafafb;
+
     --bs-body-color: #697a8d;
 }
 
 /* */
 .sms-page-body {
     /* 100 vh - headerHeight - footerHeight - padding */
-    min-height: calc(100vh - 40px - 55px - 16px);
+    min-height: calc(100vh - 40px - 60px - 16px);
 }
 
 /* Common */

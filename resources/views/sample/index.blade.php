@@ -3,13 +3,13 @@
 @section('title', 'Sample list')
 
 @section('content')
-    <x-page-header>
-        <x-page-title title="Sample list" />
+    <x-pages.page-header>
+        <x-pages.page-title title="Sample list" />
         <div class="d-flex gap-1">
             <x-input-search id="input-search" name="input-search" placeholder="Search ..." />
             <x-button-link url="{{ route('sample.create') }}" label="Add new" icon='<i class="fa-solid fa-plus me-1"></i>' />
         </div>
-    </x-page-header>
+    </x-pages.page-header>
 
     <section class="sms-search">
         <p class="my-4">Filter</p>
@@ -64,7 +64,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-calendar-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024-09-09 10:10:10" />
                         </td>
                         <td>
                             <x-dropdown-menu>
@@ -87,7 +87,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-calendar-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024-09-09 10:10:10" />
                         </td>
                         <td>
                             <x-dropdown-menu>
@@ -110,7 +110,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-calendar-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024-09-09 10:10:10" />
                         </td>
                         <td>
                             <x-dropdown-menu>
@@ -133,7 +133,7 @@
                             <x-email-icon-text text="admin@gmail.com" />
                         </td>
                         <td>
-                            <x-calendar-icon-text text="2024.10.18" />
+                            <x-calendar-icon-text text="2024-09-09 10:10:10" />
                         </td>
                         <td>
                             <x-dropdown-menu>

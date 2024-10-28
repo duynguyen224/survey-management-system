@@ -9,10 +9,12 @@ use Illuminate\View\Component;
 class PageTitle extends Component
 {
     public string $title;
+    public string $extraClass;
 
-    public function __construct(string $title)
+    public function __construct(string $title, string $extraClass = "")
     {
         $this->title = $title;
+        $this->extraClass = $extraClass;
     }
 
     public function render(): View|Closure|string

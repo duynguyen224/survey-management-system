@@ -1,21 +1,20 @@
 <?php
 
-namespace App\View\Components\Modals;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ModalConfirmDelete extends Component
+class ValidationMessage extends Component
 {
-    public string $warningMessage;
-
+    public string $field;
     /**
      * Create a new component instance.
      */
-    public function __construct(string $warningMessage)
+    public function __construct($field)
     {
-        $this->warningMessage = $warningMessage;
+        $this->field = $field;
     }
 
     /**
@@ -23,6 +22,6 @@ class ModalConfirmDelete extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.modals.modal-confirm-delete');
+        return view('components.validation-message');
     }
 }

@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AgencySeeder::class,
             UserSeeder::class,
+            CompanySeeder::class,
         ]);
     }
 }

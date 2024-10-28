@@ -41,10 +41,10 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/', 'index')->name('companies.index');
                 Route::get('/create', 'create')->name('companies.create');
                 Route::post('/', 'store')->name('companies.store');
-                Route::get('/{company}', 'show')->name('companies.show');
                 Route::get('/{company}/edit', 'edit')->name('companies.edit');
                 Route::put('/{company}', 'update')->name('companies.update');
-                Route::delete('/{company}', 'destroy')->name('companies.destroy');
+
+                Route::post('/destroy', 'destroy')->name('companies.destroy');
             });
         });
 
