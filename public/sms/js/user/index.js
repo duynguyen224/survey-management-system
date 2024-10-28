@@ -15,7 +15,7 @@ jQuery(function ($) {
     const $modalConfirmDeleteAll = $('#modalConfirmDeleteUser');
 
     $btnAddNew.click(function () {
-        resetModal();
+        resetModalUpSert();
         $headerUpdate.hide();
 
         const formDataArray = [
@@ -28,7 +28,7 @@ jQuery(function ($) {
     });
 
     $(document).on('click', '.btnEdit', function () {
-        resetModal();
+        resetModalUpSert();
         $modalUpSertUser.modal('show');
         $headerCreate.hide();
 
@@ -47,9 +47,18 @@ jQuery(function ($) {
         autoFillForm('#formUpSertUser', formDataArray);
     });
 
-    $btnDelete.click(function () {
+    $(document).on('click', '.btnDelete', function () {
         const userId = $(this).closest('tr').attr('data-user-id');
-        // Show confirm
+        const selectedIds = [userId];
+
+        if (selectedIds.length > 0) {
+            $modalConfirmDeleteAll.modal('show');
+
+            const formDataArray = [{ name: 'userIds', value: selectedIds }];
+            autoFillForm('#formConfirmDeleteUser', formDataArray);
+        } else {
+            alert('No item selected');
+        }
     });
 
     $ckcCheckAll.on('change', function () {
@@ -69,18 +78,15 @@ jQuery(function ($) {
 
         if (selectedIds.length > 0) {
             $modalConfirmDeleteAll.modal('show');
-
-            const formDataArray = [
-                { name: 'userIds', value: selectedIds },
-            ];
-    
+            
+            const formDataArray = [{ name: 'userIds', value: selectedIds }];
             autoFillForm('#formConfirmDeleteUser', formDataArray);
         } else {
             alert('No items selected');
         }
     });
 
-    function resetModal() {
+    function resetModalUpSert() {
         $headerCreate.show();
         $headerUpdate.show();
         $('#formUpSertUser').trigger('reset'); // Reset the form

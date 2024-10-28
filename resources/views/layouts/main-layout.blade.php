@@ -64,8 +64,8 @@
                     <div class="flex-grow-1">
                         <div class="sms-main-content" style="padding: 0.5rem; min-height: 100vh;">
                             @yield('breadcrumb')
-                            @yield('content')
                             @include('layouts.flash-message')
+                            @yield('content')
                         </div>
                     </div>
                 </div>

@@ -7,15 +7,23 @@ jQuery(function ($) {
     });
 });
 
+// #################
+// ### CONSTANTS ###
+// #################
 const SMS_USER_CREATE_OR_UPDATE_API = '/admin/users/create-or-update';
 const SMS_USER_DELETE_API = '/admin/users/destroy';
 
+
+// ########################
+// ### COMMON FUNCTIONS ###
+// ########################
 function isNullOrEmpty(value) {
     return value === null || value === undefined || value === '';
 }
 
 function reloadCurrentWindow() {
-    location.reload();
+    window.location = 'http://127.0.0.1:8000/admin/users';
+    // location.reload();
 }
 
 function showServerValidationMessages(jqueryResponse) {

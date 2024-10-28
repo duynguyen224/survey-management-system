@@ -6,6 +6,7 @@ use App\DTOs\SmsApiResponse;
 use App\DTOs\User\UserUpSertRequest;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -27,7 +28,7 @@ class UserController extends Controller
     public function createOrUpdate(UserUpSertRequest $request)
     {
         $res = $this->userService->createOrUpdate($request);
-
+        
         return $res->toJsonResponse();
     }
 

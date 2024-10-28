@@ -114,8 +114,8 @@
                     <i class="fa-solid fa-x icon-button" data-bs-dismiss="modal"></i>
                 </div>
                 <div class="text-center">
-                    <h5 class="sms-modal-header">Delete selected users?</h5>
-                    <p>新規登録に必要な情報を入力の上、登録ボタンをクリックしてください。</p>
+                    <h5 class="sms-modal-header">Delete selected user(s)?</h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto, voluptatum.</p>
                 </div>
                 <form id="formConfirmDeleteUser">
                     <div class="modal-body">
