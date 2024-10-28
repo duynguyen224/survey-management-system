@@ -22,7 +22,6 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $res = $this->authService->login($request);
-
         if ($res->getIsSuccess()) {
             return redirect()->route('home.index');
         }
