@@ -18,8 +18,30 @@
 
 /* */
 .sms-page-body {
-    /* 100 vh - headerHeight - footerHeight - padding */
-    min-height: calc(100vh - 40px - 60px - 16px);
+    /* 100 vh - headerHeight - footerHeight */
+    min-height: calc(100vh - 50px - 50px);
+}
+
+.sms-main-content {
+    min-height: 100vh;
+    background-color: var(--sms-bg-color);
+}
+
+.sms-main-content main {
+    padding: 0rem 1rem;
+}
+
+.sms-breadcrumb {
+    padding: 0.5rem 1rem;
+    background-color: var(--sms-white);
+}
+
+.sms-page-header {
+    padding-top: 0.5rem;
+}
+
+.sms-page-body {
+    padding-top: 0.5rem;
 }
 
 /* Common */

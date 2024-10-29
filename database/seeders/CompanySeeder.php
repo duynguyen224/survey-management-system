@@ -69,5 +69,16 @@ class CompanySeeder extends Seeder
             'building_floor' => 'Synergy Center',
             'agency_id' => $arisAgency->id,
         ]);
+
+        Company::create([
+            'name' => 'Mouse Works',
+            'person_in_charge_name' => 'Evemouse Adams',
+            'person_in_charge_email' => 'evemouse@synergyworks.com',
+            'postal_code' => '77889',
+            'prefecture' => 'Fukuoka',
+            'address' => '13-14-15 Hakata',
+            'building_floor' => 'Synergy Center',
+            'agency_id' => $arisAgency->id,
+        ]);
     }
 }
