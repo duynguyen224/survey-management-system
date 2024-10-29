@@ -1,3 +1,3 @@
-<div class="d-flex gap-1">
+<div class="sms-breadcrumb d-flex gap-1">
     {{ $slot }}
 </div>
