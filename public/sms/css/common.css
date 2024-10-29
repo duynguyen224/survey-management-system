@@ -16,7 +16,7 @@
     --bs-body-color: #697a8d;
 }
 
-/* */
+/* Layout */
 .sms-page-body {
     /* 100 vh - headerHeight - footerHeight */
     min-height: calc(100vh - 50px - 50px);
