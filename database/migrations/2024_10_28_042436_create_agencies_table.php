@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('agencies', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+            $table->boolean('status')->default(true);
 
             // Default attributes
             $table->foreignUuid('created_by_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');

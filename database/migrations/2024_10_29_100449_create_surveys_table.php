@@ -11,17 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('companies', function (Blueprint $table) {
+        Schema::create('surveys', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('person_in_charge_name');
-            $table->string('person_in_charge_email')->unique();
-            $table->string('postal_code');
-            $table->string('prefecture');
-            $table->string('address');
-            $table->string('building_floor');
+            $table->string('title');
             $table->boolean('status')->default(true);
-            $table->foreignUuid('agency_id')->nullable()->constrained('agencies')->onUpdate('cascade')->onDelete('set null');
 
             // Default attributes
             $table->foreignUuid('created_by_id')->nullable()->constrained('users')->onUpdate('cascade')->onDelete('set null');
@@ -38,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('companies');
+        Schema::dropIfExists('surveys');
     }
 };

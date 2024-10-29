@@ -4,12 +4,12 @@ namespace App\Models;
 
 use App\Models\BaseModels\MySqlBaseModel;
 
-class Agency extends MySqlBaseModel
+class Survey extends MySqlBaseModel
 {
-    protected $table = 'agencies';
+    protected $table = 'surveys';
 
     protected $fillable = [
-        'name',
-        'status'
+        'title',
+        'status',
     ];
 }

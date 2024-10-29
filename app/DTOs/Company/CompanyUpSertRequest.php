@@ -8,16 +8,21 @@ class CompanyUpSertRequest extends SmsFormRequest
 {
     public function rules()
     {
-        $company = $this->route('company');
+        $companyId = 0;
         
+        $company = $this->route('company');
+        if($company){
+            $companyId = $company->id; // case update, check person_in_charge_email unique
+        }
+
         $rules = [
             'name' => 'required|string|max:255',
             'person_in_charge_name' => 'required|string|max:255',
-            'person_in_charge_email' => 'required|email|max:255|unique:companies,person_in_charge_email,' . $company->id,
-            'post_code' => 'required|string|max:20',
+            'person_in_charge_email' => 'required|email|max:255|unique:companies,person_in_charge_email,' . $companyId,
+            'postal_code' => 'required|string|max:20',
             'prefecture' => 'required|string|max:100',
             'address' => 'required|string|max:255',
-            'building_name' => 'required|string|max:255',
+            'building_floor' => 'required|string|max:255',
         ];
 
         return $rules;
@@ -37,8 +42,8 @@ class CompanyUpSertRequest extends SmsFormRequest
             'person_in_charge_email.unique' => 'The email of the person in charge has already been taken.',
             'person_in_charge_email.max' => 'The email of the person in charge may not be greater than 255 characters.',
 
-            'post_code.required' => 'The post code is required.',
-            'post_code.max' => 'The post code may not be greater than 20 characters.',
+            'postal_code.required' => 'The postal code is required.',
+            'postal_code.max' => 'The postal code may not be greater than 20 characters.',
 
             'prefecture.required' => 'The prefecture is required.',
             'prefecture.max' => 'The prefecture may not be greater than 100 characters.',
@@ -46,8 +51,8 @@ class CompanyUpSertRequest extends SmsFormRequest
             'address.required' => 'The address is required.',
             'address.max' => 'The address may not be greater than 255 characters.',
 
-            'building_name.required' => 'The company building name is required.',
-            'building_name.max' => 'The company building name may not be greater than 255 characters.',
+            'building_floor.required' => 'The company building floor is required.',
+            'building_floor.max' => 'The company building floor may not be greater than 255 characters.',
         ];
     }
 }

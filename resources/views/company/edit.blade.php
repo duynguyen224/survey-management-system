@@ -44,11 +44,11 @@
                 </div>
             </div>
             <div class="mb-4 row">
-                <label for="post_code" class="col-md-2 col-form-label">Post code</label>
+                <label for="postal_code" class="col-md-2 col-form-label">postal code</label>
                 <div class="col-md-3">
-                    <input class="form-control" type="text" id="post_code" name="post_code"
-                        value="{{ $company->post_code }}">
-                    <x-validation-message field="post_code" />
+                    <input class="form-control" type="text" id="postal_code" name="postal_code"
+                        value="{{ $company->postal_code }}">
+                    <x-validation-message field="postal_code" />
                 </div>
             </div>
             <div class="mb-4 row">
@@ -68,11 +68,11 @@
                 </div>
             </div>
             <div class="mb-4 row">
-                <label for="building_name" class="col-md-2 col-form-label">Building name</label>
+                <label for="building_floor" class="col-md-2 col-form-label">building floor</label>
                 <div class="col-md-10">
-                    <input class="form-control" type="text" id="building_name" name="building_name"
-                        value="{{ $company->building_name }}">
-                    <x-validation-message field="building_name" />
+                    <input class="form-control" type="text" id="building_floor" name="building_floor"
+                        value="{{ $company->building_floor }}">
+                    <x-validation-message field="building_floor" />
                 </div>
             </div>
             <div class="d-flex justify-content-center gap-1">

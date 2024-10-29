@@ -12,10 +12,11 @@ class Company extends MySqlBaseModel
         'name',
         'person_in_charge_name',
         'person_in_charge_email',
-        'post_code',
+        'postal_code',
         'prefecture',
         'address',
-        'building_name',
+        'building_floor',
+        'status',
         'agency_id',
     ];
 }

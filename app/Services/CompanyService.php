@@ -49,10 +49,10 @@ class CompanyService implements ICompanyService
       'name' => $data['name'],
       'person_in_charge_name' => $data['person_in_charge_name'],
       'person_in_charge_email' => $data['person_in_charge_email'],
-      'post_code' => $data['post_code'],
+      'postal_code' => $data['postal_code'],
       'prefecture' => $data['prefecture'],
       'address' => $data['address'],
-      'building_name' => $data['building_name'],
+      'building_floor' => $data['building_floor'],
       'agency_id' => Auth::user()->agency_id
     ]);
 
@@ -74,10 +74,10 @@ class CompanyService implements ICompanyService
       'name' => $data['name'],
       'person_in_charge_name' => $data['person_in_charge_name'],
       'person_in_charge_email' => $data['person_in_charge_email'],
-      'post_code' => $data['post_code'],
+      'postal_code' => $data['postal_code'],
       'prefecture' => $data['prefecture'],
       'address' => $data['address'],
-      'building_name' => $data['building_name'],
+      'building_floor' => $data['building_floor'],
       'agency_id' => Auth::user()->agency_id
     ]);
 
