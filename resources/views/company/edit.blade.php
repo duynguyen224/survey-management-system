@@ -12,7 +12,7 @@
 
 @section('content')
     <x-pages.page-header>
-        <x-pages.page-title title="Edit company" extraClass="my-3"/>
+        <x-pages.page-title title="Edit company"/>
     </x-pages.page-header>
 
     <x-pages.page-body>

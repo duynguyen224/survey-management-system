@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         // System admin
-        $systemAdminRole = Role::findByName(RoleEnum::SystemAdmin->value);
+        $systemAdminRole = Role::findByName(RoleEnum::SYSTEM_ADMIN->value);
         
         $systemAdmin = User::create([
             'name' => 'system.admin',
@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
         $systemAdmin->assignRole($systemAdminRole);
 
         // Agency admin
-        $agencyAdmin = Role::findByName(RoleEnum::AgencyAdmin->value);
+        $agencyAdmin = Role::findByName(RoleEnum::AGENCY_ADMIN->value);
 
         // ARIS
         $arisAgency = Agency::where('name', 'ARIS VN')->first();

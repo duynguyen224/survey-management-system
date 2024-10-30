@@ -14,9 +14,9 @@ class RoleSeeder extends Seeder
     public function run(): void
     {
         $roles = [
-            RoleEnum::SystemAdmin->value,
-            RoleEnum::AgencyAdmin->value,
-            RoleEnum::User->value
+            RoleEnum::SYSTEM_ADMIN->value,
+            RoleEnum::AGENCY_ADMIN->value,
+            RoleEnum::USER->value
         ];
 
         foreach ($roles as $roleName) {

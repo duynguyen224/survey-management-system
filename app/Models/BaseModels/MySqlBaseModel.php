@@ -6,7 +6,6 @@ use App\Constants\Constants;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 
 class MySqlBaseModel extends Model
 {

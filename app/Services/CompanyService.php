@@ -7,7 +7,6 @@ use App\DTOs\SmsApiResponse;
 use App\DTOs\SmsWebResponse;
 use App\Enums\HttpStatusCode;
 use App\Models\Company;
-use App\Models\User;
 use App\Services\Interfaces\ICompanyService;
 use App\Services\Interfaces\IPaginationService;
 use Illuminate\Http\Request;

@@ -1,4 +1,4 @@
-<div class="table-responsive text-nowrap">
+<div class="sms-table table-responsive text-nowrap">
     <table class="table table-hover table-borderless">
         <thead>
             <tr>
