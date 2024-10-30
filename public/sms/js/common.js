@@ -8,6 +8,14 @@ jQuery(function ($) {
         },
     });
 
+    // ##############################################################
+    // ### Show modal with warning message when validation failed ###
+    // ##############################################################
+    const hasErrors = $('#iptValidationErrors').val();
+    if (hasErrors) {
+        $('#modalValidationError').modal('show');
+    }
+
     // ########################################
     // ### Handle checkboxes on list screen ###
     // (delete row, delete all and check/uncheck checkboxes)
@@ -60,10 +68,22 @@ jQuery(function ($) {
 // #################
 // ### CONSTANTS ###
 // #################
+
+// Constants
+const HTTP_VERB = {
+    GET: 'GET',
+    POST: 'POST',
+    PUT: 'PUT',
+    DELETE: 'DELETE',
+};
+
+// API routes
 const SMS_USER_CREATE_OR_UPDATE_API = '/admin/users/create-or-update';
 const SMS_USER_DELETE_API = '/admin/users/destroy';
 
 const SMS_COMPANY_DELETE_API = '/admin/companies/destroy';
+
+const SMS_SURVEY_DELETE_API = '/admin/surveys/destroy';
 
 // ########################
 // ### COMMON FUNCTIONS ###
@@ -95,4 +115,8 @@ function autoFillForm(form, formDataArray) {
     $.each(formDataArray, function (index, field) {
         $(`${form} input[name="${field.name}"]`).val(field.value);
     });
+}
+
+function showModalValidationError() {
+    $('#modalValidationError').modal('show');
 }

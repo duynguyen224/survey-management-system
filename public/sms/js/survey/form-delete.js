@@ -2,7 +2,7 @@ jQuery(function ($) {
     $('#formConfirmDelete').validate({
         submitHandler: function (form) {
             const formData = $(form).serialize();
-            const url = SMS_COMPANY_DELETE_API;
+            const url = SMS_SURVEY_DELETE_API;
             
             $.ajax({
                 url: url,

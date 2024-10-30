@@ -56,7 +56,7 @@
         </ul>
     @endhasanyrole
 
-    <div class="d-flex justify-content-center mb-2">
+    <div class="d-flex justify-content-center mb-3">
         <form action="{{ route('auth.logout') }}" method="POST">
             @csrf
             <div class="d-grid col-12 mx-auto">

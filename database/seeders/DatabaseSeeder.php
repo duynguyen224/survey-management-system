@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
             AgencySeeder::class,
             UserSeeder::class,
             CompanySeeder::class,
+            SurveySeeder::class,
         ]);
     }
 }

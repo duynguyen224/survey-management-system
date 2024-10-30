@@ -90,7 +90,15 @@
     </x-modals.modal-create-or-update>
 
     {{-- Modal confirm delete --}}
-    <x-modals.modal-confirm-delete warningMessage="Are you sure want to delete user(s)?" />
+    <x-modals.modal-confirm-delete>
+        <p>Are you sure want to delete user(s)?</p>
+    </x-modals.modal-confirm-delete>
+
+    {{-- Modal validation error --}}
+    <x-modals.modal-validation-error>
+        <p>There is insufficient registration information.</p>
+        <p>Please enter all the information.</p>
+    </x-modals.modal-validation-error>
 
 @endsection
 

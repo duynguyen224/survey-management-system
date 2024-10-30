@@ -1,5 +1,5 @@
-{{-- Modal confirm delete --}}
-<div class="modal fade" id="modalConfirmDelete" tabindex="-1" aria-hidden="true">
+{{-- Modal validation error --}}
+<div class="modal fade" id="modalValidationError" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,18 +8,17 @@
             </div>
             <div class="text-center">
                 <h5 class="sms-modal-header"></h5>
-                {{ $slot }}
+                <i class="fa-regular fa-circle-xmark fa-2xl text-danger"></i>
             </div>
-            <form id="formConfirmDelete" method="POST">
-                @csrf
-                @method("DELETE")
-
+            <form id="formValidatonError">
                 <div class="modal-body">
+                    <div class="text-center">
+                        {{ $slot }}
+                    </div>
                     <input type="hidden" name="recordIds" id="recordIds" value="">
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary col-4">Delete</button>
-                    <button type="button" class="btn btn-secondary col-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary col-6" data-bs-dismiss="modal">OK</button>
                 </div>
             </form>
         </div>

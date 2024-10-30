@@ -105,7 +105,7 @@ class CompanyService implements ICompanyService
         ->setMessage(__('company.Delete company(s) successfully'));
     } else {
       $res = $res->setStatusCode(HttpStatusCode::BAD_REQUEST)
-        ->setMessage('user.Company not found');
+        ->setMessage('company.Company not found');
     }
 
     return $res;

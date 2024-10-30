@@ -1,1 +1,1 @@
-<input class="form-check-input {{ $extraClass }}" type="checkbox" id="{{ $id }}">
+<input class="sms-checkbox form-check-input {{ $extraClass }}" type="checkbox" id="{{ $id }}">

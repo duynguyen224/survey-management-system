@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
         $fptAdmin->assignRole($agencyAdmin);
 
         // Normal ARIS user
-        for ($i = 1; $i <= 10; $i++) {
+        for ($i = 1; $i <= 50; $i++) {
             User::create([
                 'name' => 'ARIS user' . $i,
                 'email' => 'aris.user' . $i . '@gmail.com',

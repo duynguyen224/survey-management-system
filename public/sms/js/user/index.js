@@ -27,7 +27,7 @@ jQuery(function ($) {
 
         // Bind information to input
         const $row = $(this).closest('tr');
-        const userId = $row.attr('data-user-id');
+        const userId = $row.attr('data-record-id');
         const name = $row.attr('data-name');
         const email = $row.attr('data-email');
 

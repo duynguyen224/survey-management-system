@@ -8,13 +8,13 @@ use Illuminate\View\Component;
 
 class ButtonLink extends Component
 {
-    public string $url;
+    public string $href;
     public string $icon;
     public string $label;
 
-    public function __construct(string $url = '', string $icon, string $label)
+    public function __construct(string $href = '', string $icon, string $label)
     {
-        $this->url = $url;
+        $this->href = $href;
         $this->icon = $icon;
         $this->label = $label;
     }

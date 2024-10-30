@@ -7,7 +7,7 @@
         <x-pages.page-title title="Companies" />
         <div class="d-flex gap-1">
             <x-input-search id="input-search" name="input-search" placeholder="Search ..." />
-            <x-button-link url="{{ route('companies.create') }}" label="Add new"
+            <x-button-link href="{{ route('companies.create') }}" label="Add new"
                 icon='<i class="fa-solid fa-plus me-1"></i>' />
         </div>
     </x-pages.page-header>
@@ -15,7 +15,15 @@
     <x-pages.page-body>
 
         <div class="sms-page-filter">
-            <x-empty-space />
+            <p class="my-4">Filter</p>
+            <div class="d-flex gap-3 mb-4">
+                <div class="me-4">
+                    <span class="fw-bold">Some text: </span>
+                    <x-pill-filter href="#" isActive="{{ true }}" label="Abc" />
+                    <x-pill-filter href="#" isActive="{{ false }}" label="Def" />
+                    <x-pill-filter href="#" isActive="{{ false }}" label="Xyz" />
+                </div>
+            </div>
         </div>
 
         <x-tables.table>
@@ -77,8 +85,15 @@
     </x-pages.page-footer>
 
     {{-- Modal confirm delete --}}
-    <x-modals.modal-confirm-delete warningMessage="Are you sure want to delete company(s)?" />
+    <x-modals.modal-confirm-delete>
+        <p>Are you sure want to delete company(s)?</p>
+    </x-modals.modal-confirm-delete>
 
+    {{-- Modal validation error --}}
+    <x-modals.modal-validation-error>
+        <p>There is insufficient registration information.</p>
+        <p>Please enter all the information.</p>
+    </x-modals.modal-validation-error>
 @endsection
 
 @section('scripts')

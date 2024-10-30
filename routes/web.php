@@ -44,7 +44,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/{company}/edit', 'edit')->name('companies.edit');
                 Route::put('/{company}', 'update')->name('companies.update');
 
-                Route::post('/destroy', 'destroy')->name('companies.destroy');
+                Route::delete('/destroy', 'destroy')->name('companies.destroy');
             });
         });
 
@@ -64,7 +64,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::group(['prefix' => 'users'], function () {
                 Route::get('/', 'index')->name('users.index');
                 Route::post('/create-or-update/{id}', 'createOrUpdate')->name('users.createOrUpdate');
-                Route::post('/destroy', 'destroy')->name('users.destroy');
+                Route::delete('/destroy', 'destroy')->name('users.destroy');
 
                 Route::get('/change-password', 'changePassword')->name('users.change-password');
             });

@@ -1,4 +1,4 @@
-<a href="{{ $url }}" class="btn btn-primary">
+<a href="{{ $href }}" class="btn btn-primary">
     @if ($icon)
         {!! $icon !!}
     @endif

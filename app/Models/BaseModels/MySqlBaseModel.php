@@ -4,12 +4,13 @@ namespace App\Models\BaseModels;
 
 use App\Constants\Constants;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class MySqlBaseModel extends Model
 {
-  use HasUuids;
+  use HasUuids, HasFactory;
 
   protected $connection = 'mysql';
   protected $dateFormat = Constants::FORMAT_FULL_DATE_TIME;

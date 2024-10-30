@@ -18,8 +18,8 @@
 
 /* Layout */
 .sms-page-body {
-    /* 100 vh - headerHeight - footerHeight */
-    min-height: calc(100vh - 50px - 50px);
+    /* 100 vh - headerHeight - footerHeight - breadCrumb */
+    min-height: calc(100vh - 50px - 50px - 40px);
 }
 
 .sms-main-content {
@@ -147,4 +147,9 @@
 .sms-table td:last-child,
 .sms-table th:last-child {
     border-radius: 0 8px 8px 0;
+}
+
+/* Form controls */
+.sms-checkbox {
+    cursor: pointer;
 }

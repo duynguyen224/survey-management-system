@@ -74,6 +74,8 @@
             </div>
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
+
+        <input type="hidden" id="iptValidationErrors" name="iptValidationErrors" value="{{ $errors->any() }}">
     </div>
 
     <!-- Core JS -->
