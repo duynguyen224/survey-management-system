@@ -49,4 +49,9 @@ class UserController extends Controller
 
         return $res->toJsonResponse();
     }
+
+    public function changePassword(Request $request)
+    {
+        return view('user.change-password');
+    }
 }

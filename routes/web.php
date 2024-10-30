@@ -65,9 +65,9 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/', 'index')->name('users.index');
                 Route::post('/create-or-update/{id}', 'createOrUpdate')->name('users.createOrUpdate');
                 Route::delete('/destroy', 'destroy')->name('users.destroy');
-
-                Route::get('/change-password', 'changePassword')->name('users.change-password');
             });
+
+            Route::get('/me/change-password', 'changePassword')->name('users.change-password');
         });
 
         Route::controller(SampleController::class)->group(function () {

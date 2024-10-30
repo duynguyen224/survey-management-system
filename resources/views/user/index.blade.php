@@ -76,8 +76,7 @@
             <div class="row">
                 <div class="col mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name"
-                        required />
+                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter name"/>
                 </div>
             </div>
             <div class="row">

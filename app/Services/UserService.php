@@ -105,4 +105,11 @@ class UserService implements IUserService
 
     return $res;
   }
+
+  public function changePassword(Request $request): SmsApiResponse
+  {
+    $res = new SmsApiResponse;
+
+    return $res;
+  }
 }

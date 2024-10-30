@@ -14,4 +14,6 @@ interface IUserService
   public function createOrUpdate(UserUpSertRequest $request) : SmsApiResponse;
 
   public function destroy(Request $request) : SmsApiResponse;
+
+  public function changePassword(Request $request) : SmsApiResponse;
 }
