@@ -10,14 +10,16 @@ class ModalCreateOrUpdate extends Component
 {
     public string $modalId;
     public string $formId;
+    public string $labelSubmit;
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $modalId, string $formId)
+    public function __construct(string $modalId, string $formId, string $labelSubmit)
     {
         $this->modalId = $modalId;
         $this->formId = $formId;
+        $this->labelSubmit = $labelSubmit;
     }
 
     /**

@@ -61,7 +61,7 @@
     </x-pages.page-footer>
 
     <!-- Modal create or update user -->
-    <x-modals.modal-create-or-update modalId="modalUpSertUser" formId="formUpSertUser">
+    <x-modals.modal-create-or-update modalId="modalUpSertUser" formId="formUpSertUser" labelSubmit="Register">
         <x-slot:modalHeader>
             <span class="headerCreateUser">Create user</span>
             <span class="headerUpdateUser">Update user</span>

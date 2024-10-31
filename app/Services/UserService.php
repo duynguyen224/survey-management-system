@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\DTOs\SmsApiResponse;
 use App\DTOs\SmsWebResponse;
+use App\DTOs\User\ChangePasswordRequest;
 use App\DTOs\User\UserUpSertRequest;
 use App\Enums\HttpStatusCode;
 use App\Models\User;
@@ -11,6 +12,7 @@ use App\Services\Interfaces\IPaginationService;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class UserService implements IUserService
 {
@@ -106,9 +108,29 @@ class UserService implements IUserService
     return $res;
   }
 
-  public function changePassword(Request $request): SmsApiResponse
+  public function changePassword(ChangePasswordRequest $request): SmsApiResponse
   {
     $res = new SmsApiResponse;
+
+    $data = $request->all();
+
+    $loggedInUser = Auth::user();
+    if ($loggedInUser) {
+      $user = User::find($loggedInUser->id);
+      $user->password = bcrypt($data['new_password']);
+      $user->save();
+
+      $res = $res->setIsSuccess(true)
+        ->setStatusCode(HttpStatusCode::OK->value)
+        ->setMessage(__('user.Change password successfully. Please login again.'));
+
+        Session::flush();
+        Auth::logout();
+    } else {
+      $res = $res->setIsSuccess(true)
+        ->setStatusCode(HttpStatusCode::NOT_FOUND)
+        ->setMessage(__('user.Logged in user not found'));
+    }
 
     return $res;
   }

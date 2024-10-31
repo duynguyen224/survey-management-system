@@ -12,34 +12,34 @@
     <x-pages.page-footer></x-pages.page-footer>
 
     <!-- Modal change password -->
-    <x-modals.modal-create-or-update modalId="modalChangePassword" formId="formChangePassword">
+    <x-modals.modal-create-or-update modalId="modalChangePassword" formId="formChangePassword" labelSubmit="Change password">
         <x-slot:modalHeader>
             <span>Change password</span>
         </x-slot:modalHeader>
 
         <x-slot:modalSubHeader>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur.</p>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia, provident?</p>
+            <p class="mb-0">Please enter your current password and new password.</p>
+            <p class="mb-0">When you changed the password, you will be automatically logged out.</p>
+            <p>Please login again with your new password.</p>
         </x-slot:modalSubHeader>
 
         <x-slot:formBody>
-            <input type="hidden" name="userId" id="userId" value="">
             <div class="row">
                 <div class="col mb-3">
-                    <label for="currentPassword" class="form-label">Current password</label>
-                    <input type="text" name="currentPassword" id="currentPassword" class="form-control" placeholder="Enter current password"/>
+                    <label for="current_password" class="form-label">Current password</label>
+                    <input type="password" name="current_password" id="current_password" class="form-control" placeholder="Enter current password"/>
                 </div>
             </div>
             <div class="row">
                 <div class="col mb-3">
-                    <label for="newPassword" class="form-label">New password</label>
-                    <input type="text" name="newPassword" id="newPassword" class="form-control" placeholder="Enter new password" />
+                    <label for="new_password" class="form-label">New password</label>
+                    <input type="password" name="new_password" id="new_password" class="form-control" placeholder="Enter new password" />
                 </div>
             </div>
             <div class="row">
                 <div class="col mb-3">
-                    <label for="newPasswordConfirm" class="form-label">New password (confirm)</label>
-                    <input type="text" name="newPasswordConfirm" id="newPasswordConfirm" class="form-control" placeholder="Enter new password confirm" />
+                    <label for="new_password_confirmation" class="form-label">New password (confirm)</label>
+                    <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control" placeholder="Enter new password confirm" />
                 </div>
             </div>
         </x-slot:formBody>

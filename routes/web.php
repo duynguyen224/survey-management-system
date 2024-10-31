@@ -67,7 +67,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::delete('/destroy', 'destroy')->name('users.destroy');
             });
 
-            Route::get('/me/change-password', 'changePassword')->name('users.change-password');
+            Route::get('/me/change-password-form', 'showChangePassword')->name('users.show-change-password');
+            Route::post('/me/change-password', 'changePassword')->name('users.change-password');
         });
 
         Route::controller(SampleController::class)->group(function () {

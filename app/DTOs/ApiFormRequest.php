@@ -23,7 +23,6 @@ class ApiFormRequest extends SmsFormRequest
   {
     // $this->merge([
     //   'status' => filter_var($this->status, FILTER_VALIDATE_BOOLEAN),
-    //   'is_locked' => filter_var($this->is_locked, FILTER_VALIDATE_BOOLEAN),
     // ]);
   }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTOs\User\ChangePasswordRequest;
 use App\DTOs\User\UserUpSertRequest;
 use App\Services\Interfaces\IUserService;
 use Illuminate\Http\Request;
@@ -50,8 +51,15 @@ class UserController extends Controller
         return $res->toJsonResponse();
     }
 
-    public function changePassword(Request $request)
+    public function showChangePassword()
     {
         return view('user.change-password');
+    }
+
+    public function changePassword(ChangePasswordRequest $request)
+    {
+        $res = $this->userService->changePassword($request);
+        
+        return $res->toJsonResponse();
     }
 }

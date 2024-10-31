@@ -41,7 +41,7 @@
             </li>
 
             <li class="{{ request()->is('admin/me/change-password*') ? 'active' : '' }} menu-item">
-                <a href="{{ route('users.change-password') }}" class="menu-link d-flex gap-2">
+                <a href="{{ route('users.show-change-password') }}" class="menu-link d-flex gap-2">
                     <i class="fa-fw fa-solid fa-key"></i>
                     <div data-i18n="Analytics">Change password</div>
                 </a>

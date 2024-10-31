@@ -9,6 +9,9 @@
                 <div class="mb-3">
                     <img src="{{ asset('sms/img/pe-bank-logo.png') }}" alt="pe-bank logo" width="250">
                 </div>
+                
+                @include('layouts.flash-message')
+
                 <div class="row align-items-end">
                     <div class="col-4">
                         <form action="{{ route('auth.login') }}" method="POST">

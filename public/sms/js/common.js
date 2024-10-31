@@ -1,4 +1,17 @@
 jQuery(function ($) {
+    // ##############################################################
+    // ### Function run on page load ###
+    // ##############################################################
+
+    // Hide flash message
+    hideFlashMessage();
+
+    // Show modal with warning message when validation failed
+    const hasErrors = $('#iptValidationErrors').val();
+    if (hasErrors) {
+        $('#modalValidationError').modal('show');
+    }
+
     // ###########################################
     // ### Config ajax request with csrf token ###
     // ###########################################
@@ -7,14 +20,6 @@ jQuery(function ($) {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         },
     });
-
-    // ##############################################################
-    // ### Show modal with warning message when validation failed ###
-    // ##############################################################
-    const hasErrors = $('#iptValidationErrors').val();
-    if (hasErrors) {
-        $('#modalValidationError').modal('show');
-    }
 
     // ########################################
     // ### Handle checkboxes on list screen ###
@@ -78,8 +83,10 @@ const HTTP_VERB = {
 };
 
 // API routes
+
 const SMS_USER_CREATE_OR_UPDATE_API = '/admin/users/create-or-update';
 const SMS_USER_DELETE_API = '/admin/users/destroy';
+const SMS_USER_CHANGE_PASSWORD_API = '/admin/me/change-password';
 
 const SMS_COMPANY_DELETE_API = '/admin/companies/destroy';
 
@@ -119,4 +126,10 @@ function autoFillForm(form, formDataArray) {
 
 function showModalValidationError() {
     $('#modalValidationError').modal('show');
+}
+
+function hideFlashMessage() {
+    setTimeout(() => {
+        $('.sms-alert').slideUp(1500);
+    }, 3000);
 }

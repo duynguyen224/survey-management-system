@@ -1,61 +1,58 @@
 jQuery(function ($) {
+    // Open modal when page loaded
     const $modalChangePassword = $('#modalChangePassword');
-
     $modalChangePassword.modal('show');
 
+    // FORM
     // Handle submit form create and update
     $('#formChangePassword').validate({
-        errorElement: 'span',
+        errorElement: 'div',
         rules: {
-            currentPassword: {
+            current_password: {
                 required: true,
             },
-            newPassword: {
+            new_password: {
                 required: true,
-                minlength: 3,
+                minlength: 8,
             },
-            newPasswordConfirm: {
+            new_password_confirmation: {
                 required: true,
-                equalTo: '#password',
+                equalTo: '#new_password',
             },
         },
         messages: {
-            currentPassword: {
+            current_password: {
                 required: 'Please enter current password',
             },
-            newPassword: {
+            new_password: {
                 required: 'Please enter new password',
+                min: "The new password must be at least 8 characters long."
             },
-            newPasswordConfirm: {
+            new_password_confirmation: {
                 required: 'Please enter confirmation password',
                 equalTo: 'The confirmation password does not match',
             },
         },
         submitHandler: function (form) {
-            alert('form submit ok')
-            // const formDataArray = $(form).serializeArray();
-            // let userId = formDataArray.find((item) => item.name === 'userId').value;
-
-            // const formData = $(form).serialize();
-            // userId = isNullOrEmpty(userId) ? 0 : userId;
-            // const url = `${SMS_USER_CREATE_OR_UPDATE_API}/${userId}`;
-
-            // $.ajax({
-            //     url: url,
-            //     method: HTTP_VERB.POST,
-            //     data: formData,
-            //     success: function (res) {
-            //         if (res.isSuccess) {
-            //             reloadCurrentWindow();
-            //         } else {
-            //             showModalValidationError();
-            //             showServerValidationMessages(res);
-            //         }
-            //     },
-            //     error: function (xhr) {
-            //         handleAjaxError();
-            //     },
-            // });
+            const formData = $(form).serialize();
+            const url = `${SMS_USER_CHANGE_PASSWORD_API}`;
+            
+            $.ajax({
+                url: url,
+                method: HTTP_VERB.POST,
+                data: formData,
+                success: function (res) {
+                    if (res.isSuccess) {
+                        reloadCurrentWindow();
+                    } else {
+                        showModalValidationError();
+                        showServerValidationMessages(res);
+                    }
+                },
+                error: function (xhr) {
+                    handleAjaxError();
+                },
+            });
         },
         invalidHandler: function (event, validator) {
             showModalValidationError();

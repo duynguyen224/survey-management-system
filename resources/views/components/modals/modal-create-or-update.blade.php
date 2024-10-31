@@ -15,7 +15,7 @@
                     {{ $formBody }}
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary col-6">Register</button>
+                    <button type="submit" class="btn btn-primary col-6">{{ $labelSubmit }}</button>
                 </div>
             </form>
         </div>
