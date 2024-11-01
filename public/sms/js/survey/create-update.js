@@ -9,11 +9,14 @@ jQuery(function ($) {
     const $iconMoveUp = $('.iconMoveUp');
     const $iconMoveDown = $('.iconMoveDown');
 
+    let movePositionTimeout;
+
     reOrderingQuestionNumber();
 
     $btnAddMoreQuestion.click(function () {
         const html = $questionCard[0].outerHTML;
         $questionContainer.append(html);
+
         reOrderingQuestionNumber();
         scrollYAxis();
     });
@@ -50,8 +53,14 @@ jQuery(function ($) {
             $(this).find('.iconMoveDown').show();
 
             // Re-assign href attribute
-            $(this).find('.iconMoveUp').parent().attr('href', `#question-card-${questionNumber}`);
-            $(this).find('.iconMoveDown').parent().attr('href', `#question-card-${questionNumber}`);
+            $(this)
+                .find('.iconMoveUp')
+                .parent()
+                .attr('href', `#question-card-${questionNumber - 1}`);
+            $(this)
+                .find('.iconMoveDown')
+                .parent()
+                .attr('href', `#question-card-${questionNumber + 1}`);
         });
 
         // Hide icon move up of the first card
@@ -74,27 +83,46 @@ jQuery(function ($) {
     }
 
     function handleMoveUp(element) {
-        const $questionCard = element.closest('.sms-question-card');
-
-        if ($questionCard.prev().length) {
-            $questionCard.insertBefore($questionCard.prev());
+        // Clear any existing timeout to avoid multiple queued timeouts
+        if (movePositionTimeout) {
+            clearTimeout(movePositionTimeout);
         }
 
-        setTimeout(() => {
+        // Set a new timeout and store its ID
+        movePositionTimeout = setTimeout(() => {
+            const $questionCard = element.closest('.sms-question-card');
+
+            // Move up the UI
+            if ($questionCard.prev().length) {
+                $questionCard.insertBefore($questionCard.prev());
+            }
+
             reOrderingQuestionNumber();
+
+            // Clear the timeout once the function executes
+            movePositionTimeout = null;
         }, 100);
     }
 
     function handleMoveDown(element) {
-        const $questionCard = element.closest('.sms-question-card');
-
-        // Move up the UI
-        if ($questionCard.next().length) {
-            $questionCard.insertAfter($questionCard.next());
+        // Clear any existing timeout to avoid multiple queued timeouts
+        if (movePositionTimeout) {
+            clearTimeout(movePositionTimeout);
         }
 
-        setTimeout(() => {
+        // Set a new timeout and store its ID
+        movePositionTimeout = setTimeout(() => {
+            const $questionCard = element.closest('.sms-question-card');
+
+            // Move down the UI
+            if ($questionCard.next().length) {
+                $questionCard.insertAfter($questionCard.next());
+            }
+
             reOrderingQuestionNumber();
+
+            // Clear the timeout once the function executes
+            movePositionTimeout = null;
         }, 100);
     }
 });
