@@ -37,8 +37,8 @@
 
                 @for ($i = 1; $i < 10; $i++)
                     <x-survey.question-card-single-choice />
-                    <x-survey.question-card-multiple-choice />
-                    <x-survey.question-card-free-description />
+                    {{-- <x-survey.question-card-multiple-choice />
+                    <x-survey.question-card-free-description /> --}}
                 @endfor
             </div>
 
