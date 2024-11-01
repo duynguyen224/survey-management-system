@@ -133,3 +133,7 @@ function hideFlashMessage() {
         $('.sms-alert').slideUp(1500);
     }, 3000);
 }
+
+function scrollToPosition(position) {
+    $('#sms-layout-wrapper').animate({ scrollTop: position }, 'slow');
+}

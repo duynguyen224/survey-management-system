@@ -12,7 +12,7 @@ class SurveyDetail extends MySqlBaseModel
         'question_title',
         'question_description',
         'question_type',
-        'question_order',
+        'question_number',
         'survey_id',
     ];
 }

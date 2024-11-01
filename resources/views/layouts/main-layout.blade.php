@@ -55,7 +55,7 @@
 </head>
 
 <body>
-    <div class="layout-wrapper layout-content-navbar" style="max-height: 100vh; max-width: 100vw; overflow-x: hidden;">
+    <div class="layout-wrapper layout-content-navbar" id="sms-layout-wrapper" style="max-height: 100vh; max-width: 100vw; overflow-x: hidden;">
         <div class="layout-container">
             @include('layouts.sidebar')
             <div class="layout-page">
