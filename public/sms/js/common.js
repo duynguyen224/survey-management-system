@@ -135,5 +135,9 @@ function hideFlashMessage() {
 }
 
 function scrollToPosition(position) {
+    if (!position) {
+        position = $('.sms-page-body').height();
+    }
+
     $('#sms-layout-wrapper').animate({ scrollTop: position }, 'slow');
 }

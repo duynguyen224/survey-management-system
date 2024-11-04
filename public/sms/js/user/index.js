@@ -43,7 +43,6 @@ jQuery(function ($) {
     function resetModalUpSert() {
         $headerCreate.show();
         $headerUpdate.show();
-        $('#formUpSertUser').trigger('reset'); // Reset the form
         $('#formUpSertUser').validate().resetForm(); // Reset validation
     }
 });

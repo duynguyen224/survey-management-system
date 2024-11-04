@@ -15,14 +15,10 @@
         </div>
         <div class="sms-group-icon-move">
             <div>
-                <a>
-                    <i class="fa-regular fa-circle-up text-tertiary-gray icon-button iconMoveUp"></i>
-                </a>
+                <i class="fa-regular fa-circle-up text-tertiary-gray icon-button iconMoveUp"></i>
             </div>
             <div>
-                <a>
-                    <i class="fa-regular fa-circle-down text-tertiary-gray icon-button iconMoveDown"></i>
-                </a>
+                <i class="fa-regular fa-circle-down text-tertiary-gray icon-button iconMoveDown"></i>
             </div>
         </div>
         <div class="sms-empty-div"></div>

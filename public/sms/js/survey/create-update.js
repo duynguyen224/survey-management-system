@@ -9,7 +9,8 @@ jQuery(function ($) {
     const $iconMoveUp = $('.iconMoveUp');
     const $iconMoveDown = $('.iconMoveDown');
 
-    let movePositionTimeout;
+    const $modalConfirmDeleteQuestion = $('#modalConfirmDeleteQuestion');
+    const $btnConfirmDeleteQuestion = $('#btnConfirmDeleteQuestion');
 
     reOrderingQuestionNumber();
 
@@ -18,11 +19,28 @@ jQuery(function ($) {
         $questionContainer.append(html);
 
         reOrderingQuestionNumber();
-        scrollYAxis();
+        scrollToPosition();
     });
 
     $(document).on('click', '.iconTrash', function () {
-        const questionCard = $(this).closest('.sms-question-card').remove();
+        $modalConfirmDeleteQuestion.modal('show');
+
+        const questionCard = $(this).closest('.sms-question-card');
+        const questionNumber = questionCard.attr('data-question-number');
+        const formDataArray = [{ name: 'questionNumber', value: questionNumber }];
+
+        autoFillForm('#formConfirmDeleteQuestion', formDataArray);
+    });
+
+    $btnConfirmDeleteQuestion.click(function () {
+        const formDataArray = $('#formConfirmDeleteQuestion').serializeArray()
+        let questionNumber = formDataArray.find((item) => item.name === 'questionNumber').value;
+
+        const questionCardToDelete = $(`.sms-question-card[data-question-number="${questionNumber}"]`);
+        questionCardToDelete.remove();
+
+        $modalConfirmDeleteQuestion.modal('hide');
+        
         reOrderingQuestionNumber();
     });
 
@@ -51,16 +69,6 @@ jQuery(function ($) {
             // Show all icon move up and down
             $(this).find('.iconMoveUp').show();
             $(this).find('.iconMoveDown').show();
-
-            // Re-assign href attribute
-            $(this)
-                .find('.iconMoveUp')
-                .parent()
-                .attr('href', `#question-card-${questionNumber - 1}`);
-            $(this)
-                .find('.iconMoveDown')
-                .parent()
-                .attr('href', `#question-card-${questionNumber + 1}`);
         });
 
         // Hide icon move up of the first card
@@ -74,55 +82,52 @@ jQuery(function ($) {
         $iconMoveDown.hide();
     }
 
-    function scrollYAxis(height) {
-        if (!height) {
-            height = $('.sms-page-body').height();
-        }
-
-        scrollToPosition(height);
-    }
-
     function handleMoveUp(element) {
-        // Clear any existing timeout to avoid multiple queued timeouts
-        if (movePositionTimeout) {
-            clearTimeout(movePositionTimeout);
+        const $questionCard = element.closest('.sms-question-card');
+
+        // Move up the UI
+        if ($questionCard.prev().length) {
+            $questionCard.insertBefore($questionCard.prev());
         }
 
-        // Set a new timeout and store its ID
-        movePositionTimeout = setTimeout(() => {
-            const $questionCard = element.closest('.sms-question-card');
+        // Scroll to question above
+        const questionNumber = parseInt($questionCard.attr('data-question-number'));
+        const aboveQuestionNumber = questionNumber - 1;
+        scrollToQuestionNumber(aboveQuestionNumber);
 
-            // Move up the UI
-            if ($questionCard.prev().length) {
-                $questionCard.insertBefore($questionCard.prev());
-            }
-
-            reOrderingQuestionNumber();
-
-            // Clear the timeout once the function executes
-            movePositionTimeout = null;
-        }, 100);
+        reOrderingQuestionNumber();
     }
 
     function handleMoveDown(element) {
-        // Clear any existing timeout to avoid multiple queued timeouts
-        if (movePositionTimeout) {
-            clearTimeout(movePositionTimeout);
+        const $questionCard = element.closest('.sms-question-card');
+
+        // Move down the UI
+        if ($questionCard.next().length) {
+            $questionCard.insertAfter($questionCard.next());
         }
 
-        // Set a new timeout and store its ID
-        movePositionTimeout = setTimeout(() => {
-            const $questionCard = element.closest('.sms-question-card');
+        // Scroll to question below
+        const questionNumber = parseInt($questionCard.attr('data-question-number'));
+        const belowQuestionNumber = questionNumber + 1;
+        scrollToQuestionNumber(belowQuestionNumber);
 
-            // Move down the UI
-            if ($questionCard.next().length) {
-                $questionCard.insertAfter($questionCard.next());
+        reOrderingQuestionNumber();
+    }
+
+    function scrollToQuestionNumber(questionNumber) {
+        const headerHeight = 160;
+        let totalQuestionCardHeight = 0;
+
+        const $questionCard = $('.sms-question-card');
+        $questionCard.each(function (index) {
+            const questionIndex = index + 1;
+
+            if (questionIndex < questionNumber) {
+                totalQuestionCardHeight += $(this).outerHeight(true);
             }
+        });
 
-            reOrderingQuestionNumber();
-
-            // Clear the timeout once the function executes
-            movePositionTimeout = null;
-        }, 100);
+        const height = totalQuestionCardHeight + headerHeight;
+        scrollToPosition(height);
     }
 });

@@ -37,8 +37,8 @@
 
                 @for ($i = 1; $i < 10; $i++)
                     <x-survey.question-card-single-choice />
-                    {{-- <x-survey.question-card-multiple-choice />
-                    <x-survey.question-card-free-description /> --}}
+                    <x-survey.question-card-multiple-choice />
+                    <x-survey.question-card-free-description />
                 @endfor
             </div>
 
@@ -53,6 +53,9 @@
             <button id="btnSubmitSurvey" type="button" class="btn btn-primary px-5">Register</button>
         </div>
     </x-pages.page-footer>
+
+    {{-- Modal confirm delete --}}
+    @include('survey.modal-delete-question')
 
     {{-- Modal validation error --}}
     <x-modals.modal-validation-error>
