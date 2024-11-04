@@ -83,13 +83,14 @@ const HTTP_VERB = {
 };
 
 // API routes
-
 const SMS_USER_CREATE_OR_UPDATE_API = '/admin/users/create-or-update';
 const SMS_USER_DELETE_API = '/admin/users/destroy';
 const SMS_USER_CHANGE_PASSWORD_API = '/admin/me/change-password';
 
 const SMS_COMPANY_DELETE_API = '/admin/companies/destroy';
 
+const SMS_SURVEY_LIST_API = '/admin/surveys';
+const SMS_SURVEY_CREATE_OR_UPDATE_API = '/admin/surveys/create-or-update';
 const SMS_SURVEY_DELETE_API = '/admin/surveys/destroy';
 
 // ########################
@@ -101,6 +102,14 @@ function isNullOrEmpty(value) {
 
 function reloadCurrentWindow() {
     location.reload();
+}
+
+function redirectToUrl(relativeUrl) {
+    if (!isNullOrEmpty(relativeUrl)) {
+        window.location.href = relativeUrl;
+    } else {
+        reloadCurrentWindow();
+    }
 }
 
 function showServerValidationMessages(jqueryResponse) {

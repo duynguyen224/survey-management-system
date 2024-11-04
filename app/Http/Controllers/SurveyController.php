@@ -30,27 +30,17 @@ class SurveyController extends Controller
         return view('survey.create');
     }
 
-    public function store(SurveyUpSertRequest $request)
-    {
-        $res = $this->surveyService->store($request);
-
-        if ($res->getIsSuccess()) {
-            Session::flash('success', $res->getMessage());
-            return redirect()->route('companies.index');
-        }
-    }
-
     public function edit(Survey $survey)
     {
         return view('survey.edit', compact('survey'));
     }
 
-    public function update(SurveyUpSertRequest $request, Survey $survey) {
-        $res = $this->surveyService->update($request, $survey);
+    public function createOrUpdate(SurveyUpSertRequest $request, $id) {
+        $res = $this->surveyService->createOrUpdate($request, $id);
 
         if ($res->getIsSuccess()) {
             Session::flash('success', $res->getMessage());
-            return redirect()->route('companies.index');
+            return $res->toJsonResponse();
         }
     }
 

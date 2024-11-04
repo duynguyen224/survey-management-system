@@ -12,7 +12,7 @@ interface IUserService
 {
   public function index(Request $request) : SmsWebResponse;
 
-  public function createOrUpdate(UserUpSertRequest $request) : SmsApiResponse;
+  public function createOrUpdate(UserUpSertRequest $request, $id) : SmsApiResponse;
 
   public function destroy(Request $request) : SmsApiResponse;
 

@@ -3,23 +3,21 @@
     <div class="mb-4 row">
         <label for="name" class="col-2 col-form-label">QS title</label>
         <div class="col-10">
-            <input class="form-control" type="text" id="title" name="title" value=""
-                placeholder="Enter question title">
+            <input class="form-control questionTitle" type="text" placeholder="Enter question title">
         </div>
     </div>
 
     <div class="mb-4 row">
         <label for="name" class="col-2 col-form-label">QS description</label>
         <div class="col-10">
-            <input class="form-control" type="text" id="title" name="title" value=""
-                placeholder="Enter question description">
+            <input class="form-control questionDescription" type="text" placeholder="Enter question description">
         </div>
     </div>
 
     <div class="mb-4 row">
-        <label for="exampleFormControlSelect1" class="col-2 col-form-label">QS type</label>
+        <label class="col-2 col-form-label">QS type</label>
         <div class="col-3">
-            <select class="form-select" id="exampleFormControlSelect1">
+            <select class="form-select questionType">
                 <option value="1" selected>Single answer</option>
                 <option value="2">Multiple answer</option>
                 <option value="3">Free text</option>

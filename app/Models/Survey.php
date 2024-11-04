@@ -11,5 +11,6 @@ class Survey extends MySqlBaseModel
     protected $fillable = [
         'title',
         'status',
+        'agency_id',
     ];
 }

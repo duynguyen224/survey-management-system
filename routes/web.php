@@ -52,10 +52,9 @@ Route::group(['middleware' => ['auth']], function () {
             Route::group(['prefix' => 'surveys'], function () {
                 Route::get('/', 'index')->name('surveys.index');
                 Route::get('/create', 'create')->name('surveys.create');
-                Route::post('/', 'store')->name('surveys.store');
                 Route::get('/{survey}', 'show')->name('surveys.show');
                 Route::get('/{survey}/edit', 'edit')->name('surveys.edit');
-                Route::put('/{survey}', 'update')->name('surveys.update');
+                Route::post('/create-or-update/{id}', 'createOrUpdate')->name('surveys.createOrUpdate');
                 Route::delete('/{survey}', 'destroy')->name('surveys.destroy');
             });
         });

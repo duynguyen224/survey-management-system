@@ -25,9 +25,9 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
-    public function createOrUpdate(UserUpSertRequest $request)
+    public function createOrUpdate(UserUpSertRequest $request, $id)
     {
-        $res = $this->userService->createOrUpdate($request);
+        $res = $this->userService->createOrUpdate($request, $id);
 
         if ($res->getIsSuccess()) {
             Session::flash('success', $res->getMessage());

@@ -33,14 +33,14 @@ jQuery(function ($) {
     });
 
     $btnConfirmDeleteQuestion.click(function () {
-        const formDataArray = $('#formConfirmDeleteQuestion').serializeArray()
+        const formDataArray = $('#formConfirmDeleteQuestion').serializeArray();
         let questionNumber = formDataArray.find((item) => item.name === 'questionNumber').value;
 
         const questionCardToDelete = $(`.sms-question-card[data-question-number="${questionNumber}"]`);
         questionCardToDelete.remove();
 
         $modalConfirmDeleteQuestion.modal('hide');
-        
+
         reOrderingQuestionNumber();
     });
 
@@ -53,7 +53,35 @@ jQuery(function ($) {
     });
 
     $btnSubmitSurvey.click(function () {
-        $formCreateOrUpdateSurvey.submit();
+        const $form = $($formCreateOrUpdateSurvey);
+        $form.validate();
+
+        $('#title').rules('add', {
+            required: true,
+            messages: {
+                required: 'Survey title is required',
+            },
+        });
+
+        $('.questionTitle').each(function () {
+            $(this).rules('add', {
+                required: true,
+                messages: {
+                    required: 'Question title is required',
+                },
+            });
+        });
+
+        $('.questionDescription').each(function () {
+            $(this).rules('add', {
+                required: true,
+                messages: {
+                    required: 'Question description is required',
+                },
+            });
+        });
+
+        handleSubmitForm($form);
     });
 
     function reOrderingQuestionNumber() {
@@ -69,6 +97,15 @@ jQuery(function ($) {
             // Show all icon move up and down
             $(this).find('.iconMoveUp').show();
             $(this).find('.iconMoveDown').show();
+
+            // Re-append the name attribute for validation rules
+            $inputTitle = $(this).find('.questionTitle');
+            $inputDescription = $(this).find('.questionDescription');
+            $selectType = $(this).find('.questionType');
+
+            $inputTitle.attr('name', `questions[${index}][title]`);
+            $inputDescription.attr('name', `questions[${index}][description]`);
+            $selectType.attr('name', `questions[${index}][type]`);
         });
 
         // Hide icon move up of the first card
@@ -129,5 +166,60 @@ jQuery(function ($) {
 
         const height = totalQuestionCardHeight + headerHeight;
         scrollToPosition(height);
+    }
+
+    function handleSubmitForm(formElement) {
+        if (formElement.valid()) {
+            // Collect form data
+            const formDataArray = $(formElement).serializeArray();
+            let surveyId = formDataArray.find((item) => item.name === 'surveyId').value;
+            let surveyTitle = formDataArray.find((item) => item.name === 'title').value;
+
+            surveyId = isNullOrEmpty(surveyId) ? 0 : surveyId;
+            const url = `${SMS_SURVEY_CREATE_OR_UPDATE_API}/${surveyId}`;
+
+            let listQuestion = [];
+            $('.sms-question-card').each(function (index) {
+                const questionNumber = index + 1;
+
+                const questionTitle = $(this).find('.questionTitle').val();
+                const questionDescription = $(this).find('.questionDescription').val();
+                const questionType = $(this).find('.questionType').val();
+
+                const question = {
+                    title: questionTitle,
+                    description: questionDescription,
+                    type: questionType,
+                    number: questionNumber,
+                };
+
+                listQuestion.push(question);
+            });
+
+            // Prepare survey data
+            let surveyData = {
+                title: surveyTitle,
+                questions: listQuestion,
+            };
+
+            $.ajax({
+                url: url,
+                method: HTTP_VERB.POST,
+                data: surveyData,
+                success: function (res) {
+                    if (res.isSuccess) {
+                        redirectToUrl(SMS_SURVEY_LIST_API);
+                    } else {
+                        showModalValidationError();
+                        showServerValidationMessages(res);
+                    }
+                },
+                error: function (xhr) {
+                    handleAjaxError();
+                },
+            });
+        } else {
+            showModalValidationError();
+        }
     }
 });

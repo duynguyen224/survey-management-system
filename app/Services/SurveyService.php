@@ -7,6 +7,7 @@ use App\DTOs\SmsWebResponse;
 use App\DTOs\Survey\SurveyUpSertRequest;
 use App\Enums\HttpStatusCode;
 use App\Models\Survey;
+use App\Models\SurveyDetail;
 use App\Services\Interfaces\IPaginationService;
 use App\Services\Interfaces\ISurveyService;
 use Illuminate\Http\Request;
@@ -38,40 +39,41 @@ class SurveyService implements ISurveyService
     return $res;
   }
 
-  public function store(SurveyUpSertRequest $request): SmsWebResponse
+  public function createOrUpdate(SurveyUpSertRequest $request, $id): SmsApiResponse
   {
-    $res = new SmsWebResponse;
+    $res = new SmsApiResponse;
 
     $data = $request->all();
+    $title = $data['title'];
+    $questions = $data['questions'];
+    $agencyId = Auth::user()->agency_id;
+    if ($id == 0) { // Case create
+      $survey = Survey::create([
+        'title' => $title,
+        'agency_id' => $agencyId,
+      ]);
 
-    $survey = Survey::create([
-      'title' => $data['title'],
-      'agency_id' => Auth::user()->agency_id
-    ]);
+      // Add SurveyDetail
+      foreach ($questions as $question) {
+        SurveyDetail::create([
+          'question_title' => $question['title'],
+          'question_description' => $question['description'],
+          'question_type' => $question['type'],
+          'question_number' => $question['number'],
+          'survey_id' => $survey->id
+        ]);
+      }
+
+      $res =  $res->setMessage(__('survey.Store survey successfully'));
+    } else { // Case update
+      dd('update');
+
+      $res =  $res->setMessage(__('survey.Update survey successfully'));
+    }
 
     // Prepare response
     $res = $res->setIsSuccess(true)
-      ->setMessage(__('survey.Store survey successfully'))
-      ->setData($survey);
-
-    return $res;
-  }
-
-  public function update(SurveyUpSertRequest $request, Survey $survey): SmsWebResponse
-  {
-    $res = new SmsWebResponse;
-
-    $data = $request->all();
-
-    $survey = $survey->update([
-      'title' => $data['title'],
-      'status' => $data['status'],
-      'agency_id' => Auth::user()->agency_id
-    ]);
-
-    // Prepare response
-    $res = $res->setIsSuccess(true)
-      ->setMessage(__('survey.Update survey successfully'))
+      ->setStatusCode(HttpStatusCode::OK->value)
       ->setData($survey);
 
     return $res;

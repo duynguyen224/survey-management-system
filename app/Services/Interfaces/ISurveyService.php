@@ -12,9 +12,7 @@ interface ISurveyService
 {
   public function index(Request $request) : SmsWebResponse;
 
-  public function store(SurveyUpSertRequest $request) : SmsWebResponse;
-
-  public function update(SurveyUpSertRequest $request, Survey $survey) : SmsWebResponse;
+  public function createOrUpdate(SurveyUpSertRequest $request, $id) : SmsApiResponse;
 
   public function destroy(Request $request) : SmsApiResponse;
 }

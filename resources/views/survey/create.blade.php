@@ -16,14 +16,15 @@
     </x-pages.page-header>
 
     <x-pages.page-body>
-        <form action="{{ route('surveys.store') }}" method="POST" id="formCreateOrUpdateSurvey">
+        <form method="POST" id="formCreateOrUpdateSurvey">
             @csrf
+
+            <input type="hidden" name="surveyId" id="surveyId" value="">
+
             <div class="mb-4 row">
                 <label for="title" class="col-2 col-form-label">Survey title</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" id="title" name="title" value="{{ old('title') }}"
-                        placeholder="Enter survey title">
-                    <x-validation-message field="title" />
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Enter survey title">
                 </div>
             </div>
 
@@ -31,14 +32,14 @@
 
             <div class="sms-question-container px-5">
                 {{-- Hidden item for copy --}}
-                <x-survey.question-card-single-choice $extraClass='hidden-question-card-single-choice d-none'/>
+                {{-- <x-survey.question-card-single-choice $extraClass='hidden-question-card-single-choice d-none'/>
                 <x-survey.question-card-multiple-choice $extraClass='hidden-question-card-multiple-choice d-none'/>
-                <x-survey.question-card-free-description $extraClass='hidden-question-card-free-description d-none'/>
+                <x-survey.question-card-free-description $extraClass='hidden-question-card-free-description d-none'/> --}}
 
-                @for ($i = 1; $i < 10; $i++)
+                @for ($i = 1; $i < 2; $i++)
                     <x-survey.question-card-single-choice />
-                    <x-survey.question-card-multiple-choice />
-                    <x-survey.question-card-free-description />
+                    {{-- <x-survey.question-card-multiple-choice />
+                    <x-survey.question-card-free-description /> --}}
                 @endfor
             </div>
 
@@ -66,4 +67,5 @@
 
 @section('scripts')
     <script src="{{ asset('sms/js/survey/create-update.js') }}"></script>
+    <script src="{{ asset('sms/js/survey/form-create-update.js') }}"></script>
 @endsection

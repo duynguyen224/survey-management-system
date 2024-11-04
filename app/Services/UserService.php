@@ -40,12 +40,12 @@ class UserService implements IUserService
     return $res;
   }
 
-  public function createOrUpdate(UserUpSertRequest $request): SmsApiResponse
+  public function createOrUpdate(UserUpSertRequest $request, $id): SmsApiResponse
   {
     $res = new SmsApiResponse;
 
     $data = $request->all();
-    $id = $data['userId'];
+    $id = $id;
     $name = $data['name'];
     $email = $data['email'];
 
