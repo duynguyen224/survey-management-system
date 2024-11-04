@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-enum QuestionType: string
+enum QuestionType: int
 {
-  case SINGLE_ANSWER = 'Single Answer';
-  case MULTIPLE_ANSWERS = 'Multiple Answers';
-  case FREE_DESCRIPTION = 'Free Description';
+  case SINGLE_ANSWER = 0;
+  case MULTIPLE_ANSWERS = 1;
+  case FREE_DESCRIPTION = 2;
 }

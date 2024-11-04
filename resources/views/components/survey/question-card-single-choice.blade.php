@@ -3,14 +3,14 @@
     <div class="mb-4 row">
         <label for="name" class="col-2 col-form-label">QS title</label>
         <div class="col-10">
-            <input class="form-control questionTitle" type="text" placeholder="Enter question title">
+            <input class="form-control questionTitle" type="text" placeholder="Enter question title" value="{{ $questionTitle }}">
         </div>
     </div>
 
     <div class="mb-4 row">
         <label for="name" class="col-2 col-form-label">QS description</label>
         <div class="col-10">
-            <input class="form-control questionDescription" type="text" placeholder="Enter question description">
+            <input class="form-control questionDescription" type="text" placeholder="Enter question description" value="{{ $questionDescription }}">
         </div>
     </div>
 
@@ -18,9 +18,9 @@
         <label class="col-2 col-form-label">QS type</label>
         <div class="col-3">
             <select class="form-select questionType">
-                <option value="1" selected>Single answer</option>
-                <option value="2">Multiple answer</option>
-                <option value="3">Free text</option>
+                <option value="0" selected>Single answer</option>
+                <option value="1">Multiple answer</option>
+                <option value="2">Free text</option>
             </select>
         </div>
 

@@ -1,6 +1,5 @@
 <div class="sms-question-card {{ $extraClass }} row" id='question-card-{{ $id }}'
-    data-question-id='{{ $questionId }}' data-question-type='{{ $questionType }}'
-    data-question-number='{{ $questionNumber }}'>
+    data-question-id='{{ $questionId }}' data-question-number='{{ $questionNumber }}'>
     <div class="col-1">
         <span class="sms-question-number">1</span>
     </div>

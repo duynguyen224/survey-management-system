@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-enum CommissionStatus: string
+enum CommissionStatus: int
 {
-  case AVAILABLE = 'Available';
-  case NO_COMMISSION = 'No Commission';
+  case NO_COMMISSION = 0;
+  case AVAILABLE = 1;
 }

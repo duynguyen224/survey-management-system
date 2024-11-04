@@ -11,19 +11,31 @@ class QuestionCard extends Component
     public string $id;
     public string $extraClass;
     public string $questionId;
-    public string $questionType;
     public string $questionNumber;
+    public string $questionTitle;
+    public string $questionDescription;
+    public string $questionType;
+
 
     /**
      * Create a new component instance.
      */
-    public function __construct(string $id = '', string $extraClass = '', string $questionId = '', string $questionType = '', string $questionNumber = '')
-    {
+    public function __construct(
+        string $id = '',
+        string $extraClass = '',
+        string $questionId = '',
+        string $questionNumber = '',
+        string $questionTitle = '',
+        string $questionDescription = '',
+        string $questionType = ''
+    ) {
         $this->id = $id;
         $this->extraClass = $extraClass;
         $this->questionId = $questionId;
-        $this->questionType = $questionType;
         $this->questionNumber = $questionNumber;
+        $this->questionTitle = $questionTitle;
+        $this->questionDescription = $questionDescription;
+        $this->questionType = $questionType;
     }
 
     /**

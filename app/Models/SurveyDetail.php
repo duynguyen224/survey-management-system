@@ -15,4 +15,9 @@ class SurveyDetail extends MySqlBaseModel
         'question_number',
         'survey_id',
     ];
+
+    public function survey()
+    {
+        return $this->belongsTo(Survey::class, 'survey_id', 'id');
+    }
 }

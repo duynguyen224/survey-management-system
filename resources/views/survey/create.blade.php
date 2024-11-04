@@ -16,10 +16,7 @@
     </x-pages.page-header>
 
     <x-pages.page-body>
-        <form method="POST" id="formCreateOrUpdateSurvey">
-            @csrf
-
-            <input type="hidden" name="surveyId" id="surveyId" value="">
+        <form id="formCreateOrUpdateSurvey" action="{{ route('surveys.createOrUpdate', ['id' => 0]) }}">
 
             <div class="mb-4 row">
                 <label for="title" class="col-2 col-form-label">Survey title</label>

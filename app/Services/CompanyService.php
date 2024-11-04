@@ -6,6 +6,7 @@ use App\DTOs\Company\CompanyUpSertRequest;
 use App\DTOs\SmsApiResponse;
 use App\DTOs\SmsWebResponse;
 use App\Enums\HttpStatusCode;
+use App\Enums\Status;
 use App\Models\Company;
 use App\Services\Interfaces\ICompanyService;
 use App\Services\Interfaces\IPaginationService;
@@ -25,7 +26,8 @@ class CompanyService implements ICompanyService
   {
     $res = new SmsWebResponse;
 
-    $companies = Company::where('agency_id', Auth::user()->agency_id);
+    $companies = Company::where('agency_id', Auth::user()->agency_id)
+      ->where('status', Status::ACTIVE->value);
 
     // Paginate
     $companies = $this->paginationService->paginate($companies, $request);
@@ -98,7 +100,7 @@ class CompanyService implements ICompanyService
     $arrCompanyIds = explode(",", $companyIds);
 
     if (!empty($arrCompanyIds)) {
-      Company::whereIn('id', $arrCompanyIds)->delete();
+      Company::whereIn('id', $arrCompanyIds)->update(['status' => Status::INACTIVE->value]);
 
       $res = $res->setIsSuccess(true)
         ->setStatusCode(HttpStatusCode::OK->value)

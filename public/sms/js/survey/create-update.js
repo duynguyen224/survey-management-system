@@ -172,11 +172,9 @@ jQuery(function ($) {
         if (formElement.valid()) {
             // Collect form data
             const formDataArray = $(formElement).serializeArray();
-            let surveyId = formDataArray.find((item) => item.name === 'surveyId').value;
             let surveyTitle = formDataArray.find((item) => item.name === 'title').value;
-
-            surveyId = isNullOrEmpty(surveyId) ? 0 : surveyId;
-            const url = `${SMS_SURVEY_CREATE_OR_UPDATE_API}/${surveyId}`;
+            
+            const url = formElement.attr('action');
 
             let listQuestion = [];
             $('.sms-question-card').each(function (index) {

@@ -13,4 +13,9 @@ class Survey extends MySqlBaseModel
         'status',
         'agency_id',
     ];
+
+    public function surveyDetails()
+    {
+        return $this->hasMany(SurveyDetail::class, 'survey_id', 'id')->orderBy('question_number', 'asc');
+    }
 }

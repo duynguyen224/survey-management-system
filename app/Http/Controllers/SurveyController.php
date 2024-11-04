@@ -30,12 +30,18 @@ class SurveyController extends Controller
         return view('survey.create');
     }
 
-    public function edit(Survey $survey)
+    public function edit($id)
     {
-        return view('survey.edit', compact('survey'));
+        $res = $this->surveyService->edit($id);
+
+        $survey = $res->getData()['survey'];
+        $surveyDetails = $res->getData()['surveyDetails'];
+
+        return view('survey.edit', compact('survey', 'surveyDetails'));
     }
 
-    public function createOrUpdate(SurveyUpSertRequest $request, $id) {
+    public function createOrUpdate(SurveyUpSertRequest $request, $id)
+    {
         $res = $this->surveyService->createOrUpdate($request, $id);
 
         if ($res->getIsSuccess()) {

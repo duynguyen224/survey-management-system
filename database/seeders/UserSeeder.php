@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\Role as RoleEnum;
+use App\Enums\UserType;
 use App\Models\Agency;
 use App\Models\Role;
 use App\Models\User;
@@ -22,6 +23,7 @@ class UserSeeder extends Seeder
             'name' => 'system.admin',
             'email' => 'system.admin@gmail.com',
             'password' => bcrypt('123456'),
+            'type' => UserType::ADMIN_USER->value,
         ]);
 
         $systemAdmin->assignRole($systemAdminRole);
@@ -35,6 +37,7 @@ class UserSeeder extends Seeder
             'name' => 'aris.admin',
             'email' => 'aris.admin@gmail.com',
             'password' => bcrypt('123456'),
+            'type' => UserType::ADMIN_USER->value,
             'agency_id' => $arisAgency->id,
         ]);
         $arisAdmin->assignRole($agencyAdmin);
@@ -45,6 +48,7 @@ class UserSeeder extends Seeder
             'name' => 'fpt.admin',
             'email' => 'fpt.admin@gmail.com',
             'password' => bcrypt('123456'),
+            'type' => UserType::ADMIN_USER->value,
             'agency_id' => $fptAgency->id,
         ]);
         $fptAdmin->assignRole($agencyAdmin);
@@ -55,6 +59,7 @@ class UserSeeder extends Seeder
                 'name' => 'ARIS user' . $i,
                 'email' => 'aris.user' . $i . '@gmail.com',
                 'password' => bcrypt('123456'),
+                'type' => UserType::ADMIN_USER->value,
                 'agency_id' => $arisAgency->id,
             ]);
         }
@@ -65,6 +70,7 @@ class UserSeeder extends Seeder
                 'name' => 'FPT user' . $i,
                 'email' => 'fpt.user' . $i . '@gmail.com',
                 'password' => bcrypt('123456'),
+                'type' => UserType::ADMIN_USER->value,
                 'agency_id' => $fptAgency->id,
             ]);
         }

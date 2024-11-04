@@ -2,8 +2,8 @@
 
 namespace App\Enums;
 
-enum CompanyType: string
+enum CompanyType: int
 {
-  case IN_HOUSE = 'In House';
-  case BP = 'BP';
+  case IN_HOUSE = 0;
+  case BP = 1;
 }

@@ -7,6 +7,8 @@ use App\DTOs\SmsWebResponse;
 use App\DTOs\User\ChangePasswordRequest;
 use App\DTOs\User\UserUpSertRequest;
 use App\Enums\HttpStatusCode;
+use App\Enums\Status;
+use App\Enums\UserType;
 use App\Models\User;
 use App\Services\Interfaces\IPaginationService;
 use App\Services\Interfaces\IUserService;
@@ -27,7 +29,8 @@ class UserService implements IUserService
   {
     $res = new SmsWebResponse;
 
-    $users = User::where('agency_id', Auth::user()->agency_id);
+    $users = User::where('agency_id', Auth::user()->agency_id)
+      ->where('status', Status::ACTIVE->value);
 
     // Paginate
     $users = $this->paginationService->paginate($users, $request);
@@ -54,6 +57,7 @@ class UserService implements IUserService
         'name' => $name,
         'email' => $email,
         'password' => bcrypt('123456'),
+        'type' => UserType::ADMIN_USER->value,
         'agency_id' => Auth::user()->agency_id,
       ]);
 
@@ -95,7 +99,7 @@ class UserService implements IUserService
     $arrUserIds = explode(",", $userIds);
 
     if (!empty($arrUserIds)) {
-      User::whereIn('id', $arrUserIds)->delete();
+      User::whereIn('id', $arrUserIds)->update(['status' => Status::INACTIVE->value]);
 
       $res = $res->setIsSuccess(true)
         ->setStatusCode(HttpStatusCode::OK->value)
@@ -124,8 +128,8 @@ class UserService implements IUserService
         ->setStatusCode(HttpStatusCode::OK->value)
         ->setMessage(__('user.Change password successfully. Please login again.'));
 
-        Session::flush();
-        Auth::logout();
+      Session::flush();
+      Auth::logout();
     } else {
       $res = $res->setIsSuccess(true)
         ->setStatusCode(HttpStatusCode::NOT_FOUND)
