@@ -13,7 +13,7 @@ class SurveySeeder extends Seeder
      */
     public function run(): void
     {
-        Survey::factory()->count(50)->create();
+        Survey::factory()->count(10)->create();
 
         $arisAdmin = User::where('name', 'aris.admin')->first();
 

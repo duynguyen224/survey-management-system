@@ -30,6 +30,7 @@ class UserService implements IUserService
     $res = new SmsWebResponse;
 
     $users = User::where('agency_id', Auth::user()->agency_id)
+      ->where('type', UserType::ADMIN_USER->value)
       ->where('status', Status::ACTIVE->value);
 
     // Paginate

@@ -47,6 +47,11 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    {{-- Sms css libs --}}
+    <link rel="stylesheet" href="{{ asset('libs/select2/select2.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('libs/select2/select2-bootstrap.css') }}" />
+    <link rel="stylesheet" href="{{ asset('libs/date-range-picker/daterangepicker.css') }}" />
+
     {{-- Custom css --}}
     <link rel="stylesheet" href="{{ asset('sms/css/common.css') }}">
 
@@ -55,7 +60,8 @@
 </head>
 
 <body>
-    <div class="layout-wrapper layout-content-navbar" id="sms-layout-wrapper" style="max-height: 100vh; max-width: 100vw; overflow-x: hidden;">
+    <div class="layout-wrapper layout-content-navbar" id="sms-layout-wrapper"
+        style="max-height: 100vh; max-width: 100vw; overflow-x: hidden;">
         <div class="layout-container">
             @include('layouts.sidebar')
             <div class="layout-page">
@@ -102,6 +108,9 @@
 
     {{-- Sms js libs --}}
     <script src="{{ asset('libs/jquery-validate/jquery-validate.min.js') }}"></script>
+    <script src="{{ asset('libs/select2/select2.min.js') }}"></script>
+    <script src="{{ asset('libs/date-range-picker/moment.min.js') }}"></script>
+    <script src="{{ asset('libs/date-range-picker/daterangepicker.min.js') }}"></script>
 
     {{-- Common javascript --}}
     <script src="{{ asset('sms/js/common.js') }}"></script>

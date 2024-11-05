@@ -27,12 +27,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::controller(EngineerController::class)->group(function () {
             Route::group(['prefix' => 'engineers'], function () {
                 Route::get('/', 'index')->name('engineers.index');
-                Route::get('/create', 'create')->name('engineers.create');
-                Route::post('/', 'store')->name('engineers.store');
-                Route::get('/{engineer}', 'show')->name('engineers.show');
-                Route::get('/{engineer}/edit', 'edit')->name('engineers.edit');
-                Route::put('/{engineer}', 'update')->name('engineers.update');
-                Route::delete('/{engineer}', 'destroy')->name('engineers.destroy');
+                Route::post('/create-or-update/{id}', 'createOrUpdate')->name('engineers.createOrUpdate');
+                Route::post('/send-survey-in-bulk', 'sendSurveyInBulk')->name('engineers.sendSurveyInBulk');
+                Route::delete('/destroy', 'destroy')->name('engineers.destroy');
             });
         });
 

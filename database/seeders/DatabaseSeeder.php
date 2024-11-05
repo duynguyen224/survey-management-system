@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AgencySeeder::class,
             UserSeeder::class,
+            EngineerSeeder::class,
             CompanySeeder::class,
             SurveySeeder::class,
         ]);

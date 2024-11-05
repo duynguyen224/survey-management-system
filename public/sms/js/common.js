@@ -6,20 +6,14 @@ jQuery(function ($) {
     // Hide flash message
     hideFlashMessage();
 
+    // Setup third party libraries (select2, daterangepicker, etc...)
+    setupThirdPartyLibraries();
+
     // Show modal with warning message when validation failed
     const hasErrors = $('#iptValidationErrors').val();
     if (hasErrors) {
         $('#modalValidationError').modal('show');
     }
-
-    // ###########################################
-    // ### Config ajax request with csrf token ###
-    // ###########################################
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
-        },
-    });
 
     // ########################################
     // ### Handle checkboxes on list screen ###
@@ -83,6 +77,9 @@ const HTTP_VERB = {
 };
 
 // API routes
+const SMS_ENGINEER_CREATE_OR_UPDATE_API = '/admin/engineers/create-or-update';
+const SMS_ENGINEER_DELETE_API = '/admin/engineers/destroy';
+
 const SMS_USER_CREATE_OR_UPDATE_API = '/admin/users/create-or-update';
 const SMS_USER_DELETE_API = '/admin/users/destroy';
 const SMS_USER_CHANGE_PASSWORD_API = '/admin/me/change-password';
@@ -140,7 +137,7 @@ function showModalValidationError() {
 function hideFlashMessage() {
     setTimeout(() => {
         $('.sms-alert').slideUp(1500);
-    }, 3000);
+    }, 2500);
 }
 
 function scrollToPosition(position) {
@@ -149,4 +146,38 @@ function scrollToPosition(position) {
     }
 
     $('#sms-layout-wrapper').animate({ scrollTop: position }, 'slow');
+}
+
+function setupThirdPartyLibraries() {
+    // ### Config ajax request with csrf token ###
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+    });
+
+    // ### Setup moment.js ###
+    setupMoment();
+
+    // ### Setup daterangepicker.js ###
+    setupDatePicker();
+}
+
+function setupDatePicker() {
+    // Single date picker
+    $('.singleDatePicker').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: false,
+        autoUpdateInput: false,
+        locale: {
+            format: 'YYYY.MM.DD',
+        },
+    });
+    $('.singleDatePicker').on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('YYYY.MM.DD'));
+    });
+}
+
+function setupMoment() {
+    // moment.locale('en', { week: { dow: 1 } }); // Make the Monday is the first day of week
 }
