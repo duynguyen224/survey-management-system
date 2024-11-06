@@ -14,6 +14,8 @@ Route::group(['middleware' => ['auth']], function () {
     Route::controller(AuthController::class)->group(function () {
         Route::get('/login', "index")->name('auth.index')->withoutMiddleware('auth');
         Route::post("/login", "login")->name('auth.login')->withoutMiddleware('auth');
+        Route::get("/reset-password", "showResetPassword")->name('auth.showResetPassword')->withoutMiddleware('auth');
+        Route::post("/reset-password", "resetPassword")->name('auth.resetPassword')->withoutMiddleware('auth');
         Route::post("/logout", "logout")->name('auth.logout');
     });
 

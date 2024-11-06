@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\DTOs\Login\LoginRequest;
+use App\DTOs\Auth\LoginRequest;
+use App\DTOs\Auth\ResetPasswordRequest;
 use App\Services\Interfaces\IAuthService;
 
 class AuthController extends Controller
@@ -28,6 +29,17 @@ class AuthController extends Controller
 
         return back()->withErrors(["invalid_credential" => $res->getMessage()])
             ->withInput($request->only('email'));
+    }
+
+    public function showResetPassword()
+    {
+        return view('auth.reset-password');
+    }
+
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        $res = $this->authService->resetPassword($request);
+        return null;
     }
 
     public function logout()

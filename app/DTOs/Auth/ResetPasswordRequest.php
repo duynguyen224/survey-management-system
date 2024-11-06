@@ -1,16 +1,15 @@
 <?php
 
-namespace App\DTOs\Login;
+namespace App\DTOs\Auth;
 
 use App\DTOs\SmsFormRequest;
 
-class LoginRequest extends SmsFormRequest
+class ResetPasswordRequest extends SmsFormRequest
 {
   public function rules(): array
   {
     return [
       'email' => 'required|email',
-      'password' => 'required',
     ];
   }
 
@@ -19,7 +18,6 @@ class LoginRequest extends SmsFormRequest
     return [
       'email.required' => 'The email field is required.',
       'email.email' => 'Please enter a valid email address.',
-      'password.required' => 'The password field is required.',
     ];
   }
 }

@@ -42,7 +42,7 @@
                                 @enderror
                             </div>
                             <div class="d-flex justify-content-end mb-3">
-                                <a href="auth-forgot-password-basic.html">
+                                <a href="{{ route('auth.showResetPassword') }}">
                                     <small>Reset Password?</small>
                                 </a>
                             </div>

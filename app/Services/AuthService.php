@@ -2,7 +2,8 @@
 
 namespace App\Services;
 
-use App\DTOs\Login\LoginRequest;
+use App\DTOs\Auth\LoginRequest;
+use App\DTOs\Auth\ResetPasswordRequest;
 use App\DTOs\SmsWebResponse;
 use App\Services\Interfaces\IAuthService;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,16 @@ class AuthService implements IAuthService
     } else {
       $res = $res->setMessage('Invalid credentials');
     }
+
+    return $res;
+  }
+
+  public function resetPassword(ResetPasswordRequest $request): SmsWebResponse {
+    $res = new SmsWebResponse();
+
+    dd('Reset password screen is not designed.');
+
+    $res = $res->setIsSuccess(true)->setMessage('Reset password successfully');
 
     return $res;
   }
