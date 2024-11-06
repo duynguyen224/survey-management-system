@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DTOs\Auth\LoginRequest;
 use App\DTOs\Auth\ResetPasswordRequest;
 use App\Services\Interfaces\IAuthService;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -39,7 +40,14 @@ class AuthController extends Controller
     public function resetPassword(ResetPasswordRequest $request)
     {
         $res = $this->authService->resetPassword($request);
-        return null;
+
+        if ($res->getIsSuccess()) {
+            Session::flash('success', $res->getMessage());
+            return redirect()->route('auth.login');
+        } else {
+            Session::flash('error', $res->getMessage());
+            return redirect()->route('users.showChangePassword');
+        }
     }
 
     public function logout()

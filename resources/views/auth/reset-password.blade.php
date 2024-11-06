@@ -3,10 +3,10 @@
 @section('title', 'Login')
 
 @section('content')
-    <div class="sms-bg-primary d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh">
+    <div class="sms-bg-primary d-flex flex-column justify-content-center align-items-center" style="min-height: 98vh">
         <div class="p-5 bg-white rounded">
             <div class="text-center">
-                <h5>RESET PASSWORD</h5>
+                <h5 class="sms-modal-header">Reset password</h5>
                 <p class="mb-0">We will send you a URL to reset your password</p>
                 <p>Please enter your registered email address and click the send button</p>
             </div>

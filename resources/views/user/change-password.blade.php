@@ -7,10 +7,10 @@
         <x-pages.page-title title="" />
     </x-pages.page-header>
 
-    <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+    <div class="d-flex justify-content-center align-items-center" style="min-height: 90vh;">
         <div class="p-5 bg-white rounded">
             <div class="text-center">
-                <h5>Change password</h5>
+                <h5 class="sms-modal-header">Change password</h5>
                 <p class="mb-0">Please enter your current password and new password.</p>
                 <p class="mb-0">When you changed the password, you will be automatically logged out.</p>
                 <p>Please login again with your new password.</p>
