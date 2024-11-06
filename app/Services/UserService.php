@@ -113,9 +113,9 @@ class UserService implements IUserService
     return $res;
   }
 
-  public function changePassword(ChangePasswordRequest $request): SmsApiResponse
+  public function changePassword(ChangePasswordRequest $request): SmsWebResponse
   {
-    $res = new SmsApiResponse;
+    $res = new SmsWebResponse;
 
     $data = $request->all();
 
@@ -126,14 +126,12 @@ class UserService implements IUserService
       $user->save();
 
       $res = $res->setIsSuccess(true)
-        ->setStatusCode(HttpStatusCode::OK->value)
         ->setMessage(__('user.Change password successfully. Please login again.'));
 
       Session::flush();
       Auth::logout();
     } else {
       $res = $res->setIsSuccess(true)
-        ->setStatusCode(HttpStatusCode::NOT_FOUND)
         ->setMessage(__('user.Logged in user not found'));
     }
 

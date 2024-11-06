@@ -2,14 +2,16 @@
 
 namespace App\DTOs\User;
 
-use App\DTOs\ApiFormRequest;
+use App\DTOs\SmsFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class ChangePasswordRequest extends ApiFormRequest
+class ChangePasswordRequest extends SmsFormRequest
 {
     public function rules()
     {
+        // dd(request()->all());
+
         return [
             'current_password' => [
                 'required',
@@ -30,7 +32,7 @@ class ChangePasswordRequest extends ApiFormRequest
 
             'new_password.required' => 'Please enter a new password.',
             'new_password.min' => 'The new password must be at least 8 characters long.',
-            'new_password.confirmed' => 'The new password confirmation does not match.',
+            'new_password.confirmed' => 'The new password and confirmation does not match.',
 
             'new_password_confirmation.required' => 'Please enter password confirmation.',
         ];

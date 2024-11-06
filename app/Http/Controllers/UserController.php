@@ -59,7 +59,13 @@ class UserController extends Controller
     public function changePassword(ChangePasswordRequest $request)
     {
         $res = $this->userService->changePassword($request);
-        
-        return $res->toJsonResponse();
+
+        if ($res->getIsSuccess()) {
+            Session::flash('success', $res->getMessage());
+            return redirect()->route('auth.login');
+        } else {
+            Session::flash('error', $res->getMessage());
+            return redirect()->route('users.showChangePassword');
+        }
     }
 }

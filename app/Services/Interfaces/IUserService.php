@@ -16,5 +16,5 @@ interface IUserService
 
   public function destroy(Request $request) : SmsApiResponse;
 
-  public function changePassword(ChangePasswordRequest $request) : SmsApiResponse;
+  public function changePassword(ChangePasswordRequest $request) : SmsWebResponse;
 }
