@@ -5,12 +5,14 @@ namespace App\Services;
 use App\DTOs\Engineer\EngineerUpSertRequest;
 use App\DTOs\SmsApiResponse;
 use App\DTOs\SmsWebResponse;
+use App\DTOs\Survey\SurveySendInBulkRequest;
 use App\Enums\HttpStatusCode;
 use App\Enums\Status;
 use App\Enums\UserType;
 use App\Models\Survey;
 use App\Models\User;
 use App\Services\Interfaces\IEngineerService;
+use App\Services\Interfaces\IMailService;
 use App\Services\Interfaces\IPaginationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,10 +20,12 @@ use Illuminate\Support\Facades\Auth;
 class EngineerService implements IEngineerService
 {
   private $paginationService;
+  private $mailService;
 
-  public function __construct(IPaginationService $paginationService)
+  public function __construct(IPaginationService $paginationService, IMailService $mailService)
   {
     $this->paginationService = $paginationService;
+    $this->mailService = $mailService;
   }
 
   public function index(Request $request): SmsWebResponse
@@ -94,6 +98,29 @@ class EngineerService implements IEngineerService
           ->setData($engineer);
       }
     }
+
+    return $res;
+  }
+
+  public function sendSurveyInBulk(SurveySendInBulkRequest $request): SmsApiResponse
+  {
+    $res = new SmsApiResponse;
+
+    $data = $request->all();
+    $surveyId = $data['surveyId'];
+    $surveyResponseDeadline = $data['surveyResponseDeadline'];
+    $engineerIds = $data['engineerIds'];
+
+    $survey = Survey::find($surveyId);
+    if ($survey) {
+      // Send mail in bulk
+      // Code goes here
+      $this->mailService->sendSurvey('nguyenducduy224.coding@gmail.com', $survey);
+    }
+
+    $res = $res->setIsSuccess(true)
+      ->setStatusCode(HttpStatusCode::OK->value)
+      ->setMessage(__('engineer.Survey was sent successfully'));
 
     return $res;
   }

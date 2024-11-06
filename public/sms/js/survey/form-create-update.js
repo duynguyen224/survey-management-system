@@ -6,6 +6,8 @@ jQuery(function ($) {
     // Handle submit form delete
     $('#formConfirmDelete').validate({
         submitHandler: function (form) {
+            showLoading(true);
+
             const formData = $(form).serialize();
             const url = SMS_USER_DELETE_API;
 
@@ -19,9 +21,12 @@ jQuery(function ($) {
                     } else {
                         showServerValidationMessages(res);
                     }
+
+                    showLoading(false);
                 },
                 error: function (xhr) {
                     handleAjaxError();
+                    showLoading(false);
                 },
             });
         },

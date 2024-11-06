@@ -34,6 +34,8 @@ jQuery(function ($) {
             },
         },
         submitHandler: function (form) {
+            showLoading(true);
+
             const formData = $(form).serialize();
             const url = `${SMS_USER_CHANGE_PASSWORD_API}`;
             
@@ -45,17 +47,21 @@ jQuery(function ($) {
                     if (res.isSuccess) {
                         reloadCurrentWindow();
                     } else {
-                        showModalValidationError();
+                        showModalErrorMessage();
                         showServerValidationMessages(res);
                     }
+
+                    showLoading(false);
                 },
                 error: function (xhr) {
                     handleAjaxError();
+                    showLoading(false);
                 },
             });
         },
         invalidHandler: function (event, validator) {
-            showModalValidationError();
+            showModalErrorMessage();
+            showLoading(false);
         },
     });
 });

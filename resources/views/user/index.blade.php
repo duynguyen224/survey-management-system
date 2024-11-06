@@ -94,10 +94,10 @@
     </x-modals.modal-confirm-delete>
 
     {{-- Modal validation error --}}
-    <x-modals.modal-validation-error>
+    <x-modals.modal-error-message>
         <p>There is insufficient registration information.</p>
         <p>Please enter all the information.</p>
-    </x-modals.modal-validation-error>
+    </x-modals.modal-error-message>
 
 @endsection
 

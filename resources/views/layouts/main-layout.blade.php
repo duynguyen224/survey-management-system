@@ -81,6 +81,7 @@
         </div>
         <div class="layout-overlay layout-menu-toggle"></div>
 
+        <x-loading />
         <input type="hidden" id="iptValidationErrors" name="iptValidationErrors" value="{{ $errors->any() }}">
     </div>
 

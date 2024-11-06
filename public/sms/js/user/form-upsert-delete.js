@@ -23,6 +23,8 @@ jQuery(function ($) {
             },
         },
         submitHandler: function (form) {
+            showLoading(true);
+
             const formDataArray = $(form).serializeArray();
             let userId = formDataArray.find((item) => item.name === 'userId').value;
 
@@ -38,23 +40,29 @@ jQuery(function ($) {
                     if (res.isSuccess) {
                         reloadCurrentWindow();
                     } else {
-                        showModalValidationError();
+                        showModalErrorMessage();
                         showServerValidationMessages(res);
                     }
+
+                    showLoading(false);
                 },
                 error: function (xhr) {
                     handleAjaxError();
+                    showLoading(false);
                 },
             });
         },
         invalidHandler: function (event, validator) {
-            showModalValidationError();
+            showModalErrorMessage();
+            showLoading(false);
         },
     });
 
     // Handle submit form delete
     $('#formConfirmDelete').validate({
         submitHandler: function (form) {
+            showLoading(true);
+
             const formData = $(form).serialize();
             const url = SMS_USER_DELETE_API;
 
@@ -68,9 +76,12 @@ jQuery(function ($) {
                     } else {
                         showServerValidationMessages(res);
                     }
+
+                    showLoading(false);
                 },
                 error: function (xhr) {
                     handleAjaxError();
+                    showLoading(false);
                 },
             });
         },

@@ -118,15 +118,19 @@
         <p>Are you sure want to delete engineer(s)?</p>
     </x-modals.modal-confirm-delete>
 
-    {{-- Modal validation error --}}
-    <x-modals.modal-validation-error>
-        <p>There is insufficient registration information.</p>
-        <p>Please enter all the information.</p>
-    </x-modals.modal-validation-error>
-
     {{-- Modal survey selection --}}
     @include('engineer.modal-survey-selection', ['surveys' => $surveys])
 
+    {{-- Modal validation error --}}
+    <x-modals.modal-error-message>
+        <p>There is insufficient registration information.</p>
+        <p>Please enter all the information.</p>
+    </x-modals.modal-error-message>
+
+    {{-- Modal no engineer selected --}}
+    <x-modals.modal-error-message id="modalNoEngineerSelected">
+        <p>At least one engineer has not been selected</p>
+    </x-modals.modal-error-message>
 @endsection
 
 @section('scripts')

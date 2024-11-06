@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DTOs\Engineer\EngineerUpSertRequest;
+use App\DTOs\Survey\SurveySendInBulkRequest;
 use App\Services\Interfaces\IEngineerService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -41,6 +42,18 @@ class EngineerController extends Controller
     public function destroy(Request $request)
     {
         $res = $this->engineerService->destroy($request);
+
+        if ($res->getIsSuccess()) {
+            Session::flash('success', $res->getMessage());
+        } else {
+            Session::flash('error', $res->getMessage());
+        }
+
+        return $res->toJsonResponse();
+    }
+
+    public function sendSurveyInBulk(SurveySendInBulkRequest $request){
+        $res = $this->engineerService->sendSurveyInBulk($request);
 
         if ($res->getIsSuccess()) {
             Session::flash('success', $res->getMessage());

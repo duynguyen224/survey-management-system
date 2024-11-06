@@ -10,7 +10,9 @@ jQuery(function ($) {
 
     const $modalSurveySelection = $('#modalSurveySelection');
     const $formSurveySelection = $('#formSurveySelection');
-    const $selectSurveyType = $('#selectSurveyType');
+    const $selectSurveyId = $('#surveyId');
+
+    const $modalNoEngineerSelected = $('#modalNoEngineerSelected');
 
     $('.select2').select2({
         dropdownParent: $('#modalSurveySelection'),
@@ -51,8 +53,11 @@ jQuery(function ($) {
     });
 
     $btnSurveySelection.click(function () {
+        resetModalSurveySelection();
+
         // Reset modal survey selection
         const formDataArray = [
+            { name: 'surveyId', value: '' },
             { name: 'surveyResponseDeadline', value: '' },
             { name: 'numberOfPeople', value: '' },
         ];
@@ -67,13 +72,18 @@ jQuery(function ($) {
 
             $modalSurveySelection.modal('show');
         } else {
-            alert('No items selected');
+            $modalNoEngineerSelected.modal('show');
         }
     });
 
     function resetModalUpSert() {
         $headerCreate.show();
         $headerUpdate.show();
-        $('#formUpSertEngineer').validate().resetForm(); // Reset validation
+        $('#formUpSertEngineer').validate().resetForm();
+    }
+
+    function resetModalSurveySelection() {
+        $selectSurveyId.val('').trigger('change');
+        $('#formSurveySelection').validate().resetForm();
     }
 });

@@ -208,7 +208,7 @@ jQuery(function ($) {
                     if (res.isSuccess) {
                         redirectToUrl(SMS_SURVEY_LIST_API);
                     } else {
-                        showModalValidationError();
+                        showModalErrorMessage();
                         showServerValidationMessages(res);
                     }
                 },
@@ -217,7 +217,7 @@ jQuery(function ($) {
                 },
             });
         } else {
-            showModalValidationError();
+            showModalErrorMessage();
         }
     }
 });

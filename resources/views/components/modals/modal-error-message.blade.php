@@ -1,5 +1,5 @@
-{{-- Modal validation error --}}
-<div class="modal fade" id="modalValidationError" tabindex="-1" aria-hidden="true">
+{{-- Modal error message --}}
+<div class="modal fade" id="{{ $id }}" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

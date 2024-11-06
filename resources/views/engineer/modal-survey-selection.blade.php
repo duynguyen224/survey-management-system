@@ -15,9 +15,9 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col mb-3">
-                            <label for="name" class="form-label">Select survey type</label>
-                            <select class="form-select select2" id="selectSurveyType" name="surveyType">
-                                <option selected="">Select survey</option>
+                            <label for="name" class="form-label">Select survey</label>
+                            <select class="form-select required select2" id="surveyId" name="surveyId">
+                                <option value="">Select survey</option>
                                 @foreach ($surveys as $item)
                                     <option value="{{ $item->id }}">{{ $item->title }}</option>
                                 @endforeach

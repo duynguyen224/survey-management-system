@@ -12,7 +12,7 @@ jQuery(function ($) {
     // Show modal with warning message when validation failed
     const hasErrors = $('#iptValidationErrors').val();
     if (hasErrors) {
-        $('#modalValidationError').modal('show');
+        $('#modalErrorMessage').modal('show');
     }
 
     // ########################################
@@ -79,6 +79,7 @@ const HTTP_VERB = {
 // API routes
 const SMS_ENGINEER_CREATE_OR_UPDATE_API = '/admin/engineers/create-or-update';
 const SMS_ENGINEER_DELETE_API = '/admin/engineers/destroy';
+const SMS_ENGINEER_SEND_SURVEY_IN_BULK_API = '/admin/engineers/send-survey-in-bulk';
 
 const SMS_USER_CREATE_OR_UPDATE_API = '/admin/users/create-or-update';
 const SMS_USER_DELETE_API = '/admin/users/destroy';
@@ -130,8 +131,8 @@ function autoFillForm(form, formDataArray) {
     });
 }
 
-function showModalValidationError() {
-    $('#modalValidationError').modal('show');
+function showModalErrorMessage() {
+    $('#modalErrorMessage').modal('show');
 }
 
 function hideFlashMessage() {
@@ -180,4 +181,12 @@ function setupDatePicker() {
 
 function setupMoment() {
     // moment.locale('en', { week: { dow: 1 } }); // Make the Monday is the first day of week
+}
+
+function showLoading(show) {
+    if (show) {
+        $('#sms-loading').removeClass('d-none');
+    } else {
+        $('#sms-loading').addClass('d-none');
+    }
 }

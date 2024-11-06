@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components\Modals;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ModalValidationError extends Component
+class Loading extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class ModalValidationError extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.modals.modal-validation-error');
+        return view('components.loading');
     }
 }
