@@ -5,8 +5,10 @@
 @section('content')
     <x-pages.page-header>
         <x-pages.page-title title="Engineers" />
-        <x-button-modal id="btnAdd" label="Add new" icon='<i class="fa-solid fa-plus me-1"></i>'
-            modalId="modalUpSertEngineer" />
+        <div class="d-flex gap-1">
+            <x-input-search id="iptSearch" name="input-search" placeholder="Search ..." />
+            <x-button-modal id="btnAdd" label="Add new" icon='<i class="fa-solid fa-plus me-1"></i>' modalId="modalUpSertEngineer" />
+        </div>
     </x-pages.page-header>
 
     <x-pages.page-body>

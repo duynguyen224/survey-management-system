@@ -6,7 +6,7 @@
     <x-pages.page-header>
         <x-pages.page-title title="Sample list" />
         <div class="d-flex gap-1">
-            <x-input-search id="input-search" name="input-search" placeholder="Search ..." />
+            <x-input-search id="iptSearch" name="input-search" placeholder="Search ..." />
             <x-button-link href="{{ route('sample.create') }}" label="Add new" icon='<i class="fa-solid fa-plus me-1"></i>' />
         </div>
     </x-pages.page-header>
