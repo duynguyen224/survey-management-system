@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('survey_details', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('question_title');
-            $table->string('question_description');
+            $table->string('question_title', 100);
+            $table->string('question_description', 255);
             $table->unsignedTinyInteger('question_type');
             $table->unsignedTinyInteger('question_number');
             $table->foreignUuid('survey_id')->nullable()->constrained('surveys')->onUpdate('cascade')->onDelete('set null');
