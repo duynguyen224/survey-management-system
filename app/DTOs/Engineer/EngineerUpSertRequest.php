@@ -12,8 +12,8 @@ class EngineerUpSertRequest extends ApiFormRequest
 
         return [
             'id' => 'nullable|string',
-            'name' => 'required|string|max:20',
-            'email' => 'required|email|unique:users,email,' . $userId,
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|max:100|unique:users,email,' . $userId,
         ];
     }
 
@@ -24,10 +24,12 @@ class EngineerUpSertRequest extends ApiFormRequest
 
             'name.required' => 'The name field is required.',
             'name.string' => 'The name must be a valid string.',
+            'name.max' => 'The engineer name may not be greater than 100 characters.',
 
             'email.required' => 'The email field is required.',
             'email.email' => 'Please enter a valid email address.',
             'email.unique' => 'The email address has already been taken.',
+            'email.max' => 'The email may not be greater than 100 characters.',
         ];
     }
 }
