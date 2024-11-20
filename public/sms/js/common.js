@@ -91,6 +91,11 @@ const SMS_SURVEY_LIST_API = '/admin/surveys';
 const SMS_SURVEY_CREATE_OR_UPDATE_API = '/admin/surveys/create-or-update';
 const SMS_SURVEY_DELETE_API = '/admin/surveys/destroy';
 
+// Question types
+const SMS_QUESTION_TYPE_SINGLE_CHOICE = 0;
+const SMS_QUESTION_TYPE_MULTIPLE_CHOICE = 1;
+const SMS_QUESTION_TYPE_FREE_TEXT = 2;
+
 // ########################
 // ### COMMON FUNCTIONS ###
 // ########################

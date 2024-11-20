@@ -16,7 +16,6 @@ class QuestionCard extends Component
     public string $questionDescription;
     public string $questionType;
 
-
     /**
      * Create a new component instance.
      */

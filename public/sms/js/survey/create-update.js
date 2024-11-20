@@ -15,7 +15,13 @@ jQuery(function ($) {
     reOrderingQuestionNumber();
 
     $btnAddMoreQuestion.click(function () {
-        const html = $questionCard[0].outerHTML;
+        // Copy and create new question card from hidden question card
+        const $defaultQuestionCard = $questionCard[0]; // Native DOM element
+        let $clonedQuestionCard = $($defaultQuestionCard).clone(); // Convert to jQuery object
+        $clonedQuestionCard = $clonedQuestionCard.removeClass('d-none'); // Remove class d-none to make it visible
+
+        // Get question card outer html
+        const html = $clonedQuestionCard[0].outerHTML;
         $questionContainer.append(html);
 
         reOrderingQuestionNumber();
@@ -50,6 +56,38 @@ jQuery(function ($) {
 
     $(document).on('click', '.iconMoveDown', function () {
         handleMoveDown($(this));
+    });
+
+    $(document).on('change', '.questionType', function () {
+        const questionType = $(this).val();
+        console.log('Changing question type to: ', questionType);
+
+        // common.js
+        // const SMS_QUESTION_TYPE_SINGLE_CHOICE = 0;
+        // const SMS_QUESTION_TYPE_MULTIPLE_CHOICE = 1;
+        // const SMS_QUESTION_TYPE_FREE_TEXT = 2;
+
+        const $smsQuestionCard = $(this).closest('.sms-question-card');
+
+        if (questionType == SMS_QUESTION_TYPE_SINGLE_CHOICE || questionType == SMS_QUESTION_TYPE_MULTIPLE_CHOICE) {
+            // Show below elements
+            $smsQuestionCard.find('.choiceNumberContainer').removeClass('d-none');
+            $smsQuestionCard.find('.choiceContainer').removeClass('d-none');
+            $smsQuestionCard.find('.branchContainer').removeClass('d-none');
+        } else if (questionType == SMS_QUESTION_TYPE_FREE_TEXT) {
+            // Hide below elements
+            $smsQuestionCard.find('.choiceNumberContainer').addClass('d-none');
+            $smsQuestionCard.find('.choiceContainer').addClass('d-none');
+            $smsQuestionCard.find('.branchContainer').addClass('d-none');
+        } else {
+            alert('Some error occurred while changing question type');
+        }
+    });
+
+    $(document).on('change', '.selectNumberOfChoice', function () {
+        const numberOfChoices = $(this).val();
+
+        renderChoices(numberOfChoices);
     });
 
     $btnSubmitSurvey.click(function () {
@@ -88,8 +126,13 @@ jQuery(function ($) {
         // Re-ordering question number
         const $questionCard = $('.sms-question-card');
 
-        $questionCard.each(function (index) {
-            const questionNumber = index + 1;
+        let index = 1;
+        $questionCard.each(function () {
+            if ($(this).hasClass('d-none')) {
+                return; // skip here, start with next element // same as 'continue' in loop
+            }
+
+            const questionNumber = index;
             $(this).find('.sms-question-number').html(questionNumber);
             $(this).attr('data-question-number', questionNumber);
             $(this).attr('id', `question-card-${questionNumber}`);
@@ -106,6 +149,8 @@ jQuery(function ($) {
             $inputTitle.attr('name', `questions[${index}][title]`);
             $inputDescription.attr('name', `questions[${index}][description]`);
             $selectType.attr('name', `questions[${index}][type]`);
+
+            index++;
         });
 
         // Hide icon move up of the first card
@@ -173,7 +218,7 @@ jQuery(function ($) {
             // Collect form data
             const formDataArray = $(formElement).serializeArray();
             let surveyTitle = formDataArray.find((item) => item.name === 'title').value;
-            
+
             const url = formElement.attr('action');
 
             let listQuestion = [];
@@ -219,5 +264,20 @@ jQuery(function ($) {
         } else {
             showModalErrorMessage();
         }
+    }
+
+    function renderChoices(numberOfChoices) {
+        let html = '';
+
+        for (let i = 1; i <= numberOfChoices; i++) {
+            html += `<div class="col-3 sms-answer">
+                        <div class="input-group">
+                            <span class="input-group-text">${i}</span>
+                            <input type="text" class="form-control iptChoice" placeholder="Enter choice">
+                        </div>
+                    </div>`;
+        }
+
+        $('.sms-answer-container').html(html);
     }
 });

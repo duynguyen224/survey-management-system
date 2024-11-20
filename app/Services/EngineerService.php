@@ -10,6 +10,7 @@ use App\Enums\HttpStatusCode;
 use App\Enums\Status;
 use App\Enums\UserType;
 use App\Models\Survey;
+use App\Models\SurveyAssignment;
 use App\Models\User;
 use App\Services\Interfaces\IEngineerService;
 use App\Services\Interfaces\IMailService;
@@ -113,9 +114,21 @@ class EngineerService implements IEngineerService
 
     $survey = Survey::find($surveyId);
     if ($survey) {
-      // Send mail in bulk
-      // Code goes here
-      $this->mailService->sendSurvey('nguyenducduy224.coding@gmail.com', $survey);
+      // Store survey_assignments
+      foreach ($engineerIds as $engineerId) {
+        SurveyAssignment::create([
+          'survey_id' => $surveyId,
+          'user_id' => $engineerId,
+          'deadline' => $surveyResponseDeadline,
+        ]);
+      }
+
+      // Find engineers based on ids
+      $engineers = User::whereIn('id', $engineerIds)->get();
+      // Send mail for engineers
+      foreach ($engineers as $engineer) {
+        $this->mailService->sendSurvey($engineer->email, $survey);
+      }
     }
 
     $res = $res->setIsSuccess(true)

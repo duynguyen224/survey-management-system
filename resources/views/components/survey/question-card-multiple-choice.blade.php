@@ -26,7 +26,7 @@
             </select>
         </div>
 
-        <div class="col-3">
+        <div class="col-3 choiceNumberContainer">
             <div class="d-flex gap-2">
                 <label for="name" class="col-form-label">Number</label>
                 <select class="form-select" id="exampleFormControlSelect1">
@@ -45,14 +45,12 @@
         <label for="name" class="col-2 col-form-label">Choices</label>
         <div class="col-10">
             <div class="sms-answer-container">
-                @for ($i = 1; $i <= 5; $i++)
-                    <div class="col-3 sms-answer">
-                        <div class="input-group">
-                            <span class="input-group-text">{{ $i }}</span>
-                            <input type="text" class="form-control">
-                        </div>
+                <div class="col-3 sms-answer">
+                    <div class="input-group">
+                        <span class="input-group-text">1</span>
+                        <input type="text" class="form-control iptChoice">
                     </div>
-                @endfor
+                </div>
             </div>
         </div>
     </div>

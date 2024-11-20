@@ -29,12 +29,10 @@
 
             <div class="sms-question-container px-5">
                 {{-- Hidden item for copy --}}
-                {{-- <x-survey.question-card-single-choice $extraClass='hidden-question-card-single-choice d-none'/>
-                <x-survey.question-card-multiple-choice $extraClass='hidden-question-card-multiple-choice d-none'/>
-                <x-survey.question-card-free-description $extraClass='hidden-question-card-free-description d-none'/> --}}
+                <x-survey.question-card extraClass="d-none" />
 
                 @for ($i = 1; $i < 2; $i++)
-                    <x-survey.question-card-single-choice />
+                    {{-- <x-survey.question-card-single-choice /> --}}
                     {{-- <x-survey.question-card-multiple-choice />
                     <x-survey.question-card-free-description /> --}}
                 @endfor
