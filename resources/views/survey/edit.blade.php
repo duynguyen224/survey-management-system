@@ -18,6 +18,10 @@
     </x-pages.page-header>
 
     <x-pages.page-body>
+
+        {{-- Hidden item for copy --}}
+        <x-survey.question-card extraClass="d-none" />
+
         <form id="formCreateOrUpdateSurvey" action="{{ route('surveys.createOrUpdate', ['id' => $survey->id]) }}">
             <div class="mb-4 row">
                 <label for="title" class="col-2 col-form-label">Survey title</label>
@@ -30,11 +34,6 @@
             <hr>
 
             <div class="sms-question-container px-5">
-                {{-- Hidden item for copy --}}
-                {{-- <x-survey.question-card-single-choice $extraClass='hidden-question-card-single-choice d-none'/>
-                <x-survey.question-card-multiple-choice $extraClass='hidden-question-card-multiple-choice d-none'/>
-                <x-survey.question-card-free-description $extraClass='hidden-question-card-free-description d-none'/> --}}
-
                 @foreach ($surveyDetails as $surveyDetail)
                     @switch($surveyDetail->question_type)
                         @case(QuestionType::SINGLE_ANSWER->value)

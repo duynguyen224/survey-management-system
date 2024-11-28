@@ -14,21 +14,7 @@
     <x-pages.page-body>
 
         <div class="sms-page-filter">
-            <p class="my-4">Filter</p>
-            <div class="d-flex gap-3 mb-4">
-                <div class="me-4">
-                    <span class="fw-bold">Some text: </span>
-                    <x-pill-filter href="#" isActive="{{ true }}" label="Abc" />
-                    <x-pill-filter href="#" isActive="{{ false }}" label="Def" />
-                    <x-pill-filter href="#" isActive="{{ false }}" label="Xyz" />
-                </div>
-                <div class="me-4">
-                    <span class="fw-bold">Some text: </span>
-                    <x-pill-filter href="#" isActive="{{ true }}" label="Abc" />
-                    <x-pill-filter href="#" isActive="{{ false }}" label="Def" />
-                    <x-pill-filter href="#" isActive="{{ false }}" label="Xyz" />
-                </div>
-            </div>
+            <x-empty-space />
         </div>
 
         <div class="text-end">
@@ -41,10 +27,9 @@
                 <th width="1%">
                     <x-form-controls.checkbox id="checkAll" />
                 </th>
-                <th width="10%">Type</th>
                 <th width="15%">Name</th>
-                <th width="15%">Email</th>
-                <th>Registration date</th>
+                <th width="20%">Email</th>
+                <th width="20%">Registration date</th>
                 <th>First company</th>
                 <th width="3%" class="text-center">
                     <x-trash-icon />
@@ -58,7 +43,6 @@
                         <td>
                             <x-form-controls.checkbox id="{{ $item->id }}" extraClass="rowCheckbox" />
                         </td>
-                        <td>???</td>
                         <td>
                             {{ $item->name }}
                         </td>

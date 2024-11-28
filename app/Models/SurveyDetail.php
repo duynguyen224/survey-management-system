@@ -13,6 +13,7 @@ class SurveyDetail extends MySqlBaseModel
         'question_description',
         'question_type',
         'question_number',
+        'number_of_choices',
         'survey_id',
     ];
 

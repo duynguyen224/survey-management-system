@@ -24,7 +24,7 @@
         <div class="mb-4 row">
             <label for="name" class="col-2 col-form-label">QS type</label>
             <div class="col-3">
-                <select class="form-select questionType" id="exampleFormControlSelect1">
+                <select class="form-select questionType">
                     <option value="0">Single answer</option>
                     <option value="1" selected>Multiple answer</option>
                     <option value="2">Free text</option>
@@ -60,7 +60,7 @@
             </div>
         </div>
 
-        <div class="mb-4 row branchContainer">
+        {{-- <div class="mb-4 row branchContainer">
             <label for="name" class="col-2 col-form-label">Branch</label>
             <div class="col-10 d-flex align-items-center gap-2">
                 <div class="form-check">
@@ -76,9 +76,9 @@
                     </label>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
-        <div class="mb-4 row conditionContainer">
+        {{-- <div class="mb-4 row conditionContainer">
             <label for="name" class="col-2 col-form-label">Condition</label>
             <div class="col-2">
                 <div class="form-check mt-1">
@@ -92,7 +92,7 @@
             <div class="col-3">
                 <div class="d-flex gap-2">
                     <label for="name" class="col-form-label">Question</label>
-                    <select class="form-select" id="exampleFormControlSelect1">
+                    <select class="form-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -106,7 +106,7 @@
             <div class="col-3">
                 <div class="d-flex gap-2">
                     <label for="name" class="col-form-label">Answer</label>
-                    <select class="form-select" id="exampleFormControlSelect1">
+                    <select class="form-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -120,7 +120,7 @@
             <div class="col-2 ps-0">
                 <div class="d-flex">
                     <label for="name" class="col-form-label"></label>
-                    <select class="form-select" id="exampleFormControlSelect1">
+                    <select class="form-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -144,7 +144,7 @@
             <div class="col-3">
                 <div class="d-flex gap-2">
                     <label for="name" class="col-form-label">Question</label>
-                    <select class="form-select" id="exampleFormControlSelect1">
+                    <select class="form-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -158,7 +158,7 @@
             <div class="col-3">
                 <div class="d-flex gap-2">
                     <label for="name" class="col-form-label">Answer</label>
-                    <select class="form-select" id="exampleFormControlSelect1">
+                    <select class="form-select">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -168,7 +168,7 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="sms-question-button col-1">

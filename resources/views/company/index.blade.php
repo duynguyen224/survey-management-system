@@ -15,15 +15,7 @@
     <x-pages.page-body>
 
         <div class="sms-page-filter">
-            <p class="my-4">Filter</p>
-            <div class="d-flex gap-3 mb-4">
-                <div class="me-4">
-                    <span class="fw-bold">Some text: </span>
-                    <x-pill-filter href="#" isActive="{{ true }}" label="Abc" />
-                    <x-pill-filter href="#" isActive="{{ false }}" label="Def" />
-                    <x-pill-filter href="#" isActive="{{ false }}" label="Xyz" />
-                </div>
-            </div>
+            <x-empty-space />
         </div>
 
         <x-tables.table>
@@ -31,11 +23,10 @@
                 <th width="1%">
                     <x-form-controls.checkbox id="checkAll" />
                 </th>
-                <th width="15%">Copmany name</th>
+                <th width="15%">Company name</th>
                 <th width="15%">Manager</th>
                 <th>Email</th>
                 <th>Registration date</th>
-                <th>Commission status</th>
                 <th>Result</th>
                 <th width="3%" class="text-center">
                     <x-trash-icon />
@@ -61,10 +52,7 @@
                             <x-calendar-icon-text text="{{ $item->created_at }}" />
                         </td>
                         <td>
-                            ???
-                        </td>
-                        <td>
-                            ???
+                            <i class="fa-solid fa-download text-tertiary-gray icon-button"></i>
                         </td>
                         <td>
                             <x-dropdown-menu>

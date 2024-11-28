@@ -122,7 +122,7 @@ function showServerValidationMessages(jqueryResponse) {
         let inputElement = $(`[name="${key}"]`);
 
         // Set error message in jQuery Validation
-        inputElement.addClass('error').after(`<span class="error">${errorMessages[0]}</span>`);
+        inputElement.addClass('error').after(`<span class="server-error error">${errorMessages[0]}</span>`);
     });
 }
 

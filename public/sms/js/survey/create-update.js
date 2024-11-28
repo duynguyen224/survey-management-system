@@ -60,7 +60,6 @@ jQuery(function ($) {
 
     $(document).on('change', '.questionType', function () {
         const questionType = $(this).val();
-        console.log('Changing question type to: ', questionType);
 
         // common.js
         // const SMS_QUESTION_TYPE_SINGLE_CHOICE = 0;
@@ -87,11 +86,14 @@ jQuery(function ($) {
     $(document).on('change', '.selectNumberOfChoice', function () {
         const numberOfChoices = $(this).val();
 
-        renderChoices(numberOfChoices);
+        const $cardContainer = $(this).closest('.sms-question-card');
+        const $answerContainer = $cardContainer.find('.sms-answer-container');
+
+        renderChoices($answerContainer, numberOfChoices);
     });
 
     $btnSubmitSurvey.click(function () {
-        const $form = $($formCreateOrUpdateSurvey);
+        const $form = $('#formCreateOrUpdateSurvey');
         $form.validate();
 
         $('#title').rules('add', {
@@ -102,21 +104,27 @@ jQuery(function ($) {
         });
 
         $('.questionTitle').each(function () {
-            $(this).rules('add', {
-                required: true,
-                messages: {
-                    required: 'Question title is required',
-                },
-            });
+            const $container = $(this).closest('.sms-question-card');
+            if (!$container.hasClass('d-none')) {
+                $(this).rules('add', {
+                    required: true,
+                    messages: {
+                        required: 'Question title is required',
+                    },
+                });
+            }
         });
 
         $('.questionDescription').each(function () {
-            $(this).rules('add', {
-                required: true,
-                messages: {
-                    required: 'Question description is required',
-                },
-            });
+            const $container = $(this).closest('.sms-question-card');
+            if (!$container.hasClass('d-none')) {
+                $(this).rules('add', {
+                    required: true,
+                    messages: {
+                        required: 'Question description is required',
+                    },
+                });
+            }
         });
 
         handleSubmitForm($form);
@@ -215,6 +223,7 @@ jQuery(function ($) {
 
     function handleSubmitForm(formElement) {
         if (formElement.valid()) {
+            console.log('valid form');
             // Collect form data
             const formDataArray = $(formElement).serializeArray();
             let surveyTitle = formDataArray.find((item) => item.name === 'title').value;
@@ -223,20 +232,24 @@ jQuery(function ($) {
 
             let listQuestion = [];
             $('.sms-question-card').each(function (index) {
-                const questionNumber = index + 1;
+                const $container = $(this).closest('.sms-question-card');
 
-                const questionTitle = $(this).find('.questionTitle').val();
-                const questionDescription = $(this).find('.questionDescription').val();
-                const questionType = $(this).find('.questionType').val();
+                if (!$container.hasClass('d-none')) {
+                    const questionNumber = index + 1;
 
-                const question = {
-                    title: questionTitle,
-                    description: questionDescription,
-                    type: questionType,
-                    number: questionNumber,
-                };
+                    const questionTitle = $(this).find('.questionTitle').val();
+                    const questionDescription = $(this).find('.questionDescription').val();
+                    const questionType = $(this).find('.questionType').val();
 
-                listQuestion.push(question);
+                    const question = {
+                        title: questionTitle,
+                        description: questionDescription,
+                        type: questionType,
+                        number: questionNumber,
+                    };
+
+                    listQuestion.push(question);
+                }
             });
 
             // Prepare survey data
@@ -266,7 +279,7 @@ jQuery(function ($) {
         }
     }
 
-    function renderChoices(numberOfChoices) {
+    function renderChoices(answerContainer, numberOfChoices) {
         let html = '';
 
         for (let i = 1; i <= numberOfChoices; i++) {
@@ -278,6 +291,6 @@ jQuery(function ($) {
                     </div>`;
         }
 
-        $('.sms-answer-container').html(html);
+        answerContainer.html(html);
     }
 });
