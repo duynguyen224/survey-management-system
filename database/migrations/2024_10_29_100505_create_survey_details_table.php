@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('question_type');
             $table->unsignedTinyInteger('question_number');
             $table->unsignedTinyInteger('number_of_choices');
+            $table->json('choices');
             $table->foreignUuid('survey_id')->nullable()->constrained('surveys')->onUpdate('cascade')->onDelete('set null');
 
             // Default attributes

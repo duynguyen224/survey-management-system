@@ -13,6 +13,8 @@ class EngineerSeeder extends Seeder
      */
     public function run(): void
     {
+        $password = bcrypt('123456');
+
         // ARIS
         $arisAdmin = User::where('name', 'aris.admin')->first();
 
@@ -21,7 +23,7 @@ class EngineerSeeder extends Seeder
             User::create([
                 'name' => 'ARIS engineer' . $i,
                 'email' => 'aris.engineer' . $i . '@gmail.com',
-                'password' => bcrypt('123456'),
+                'password' => $password,
                 'type' => UserType::ENGINEER->value,
                 'agency_id' => $arisAdmin->agency_id,
             ]);

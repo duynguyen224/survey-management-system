@@ -26,8 +26,8 @@
             <div class="mb-4 row">
                 <label for="title" class="col-2 col-form-label">Survey title</label>
                 <div class="col-10">
-                    <input class="form-control" type="text" name="title" id="title"
-                        placeholder="Enter survey title" value="{{ $survey->title }}">
+                    <input class="form-control" type="text" name="title" id="title" placeholder="Enter survey title"
+                        value="{{ $survey->title }}">
                 </div>
             </div>
 
@@ -35,34 +35,14 @@
 
             <div class="sms-question-container px-5">
                 @foreach ($surveyDetails as $surveyDetail)
-                    @switch($surveyDetail->question_type)
-                        @case(QuestionType::SINGLE_ANSWER->value)
-                            <x-survey.question-card-single-choice id="{{ $surveyDetail->id }}" 
-                                questionId="{{ $surveyDetail->id }}"
-                                questionType="{{ $surveyDetail->question_type }}"
-                                questionNumber="{{ $surveyDetail->question_number }}"
-                                questionTitle="{{ $surveyDetail->question_title }}"
-                                questionDescription="{{ $surveyDetail->question_description }}" />
-                        @break
-
-                        @case(QuestionType::MULTIPLE_ANSWERS->value)
-                            <x-survey.question-card-multiple-choice id="{{ $surveyDetail->id }}"
-                                questionId="{{ $surveyDetail->id }}" 
-                                questionType="{{ $surveyDetail->question_type }}"
-                                questionNumber="{{ $surveyDetail->question_number }}"
-                                questionTitle="{{ $surveyDetail->question_title }}"
-                                questionDescription="{{ $surveyDetail->question_description }}" />
-                        @break
-
-                        @case(QuestionType::FREE_DESCRIPTION->value)
-                            <x-survey.question-card-free-description id="{{ $surveyDetail->id }}"
-                                questionId="{{ $surveyDetail->id }}" 
-                                questionType="{{ $surveyDetail->question_type }}"
-                                questionNumber="{{ $surveyDetail->question_number }}"
-                                questionTitle="{{ $surveyDetail->question_title }}"
-                                questionDescription="{{ $surveyDetail->question_description }}" />
-                        @break
-                    @endswitch
+                    <x-survey.question-card id="{{ $surveyDetail->id }}"
+                        questionId="{{ $surveyDetail->id }}" 
+                        questionType="{{ $surveyDetail->question_type }}"
+                        questionNumber="{{ $surveyDetail->question_number }}"
+                        questionTitle="{{ $surveyDetail->question_title }}"
+                        questionDescription="{{ $surveyDetail->question_description }}"
+                        numberOfChoices="{{ $surveyDetail->number_of_choices }}"
+                        choices="{{ $surveyDetail->choices }}" />
                 @endforeach
             </div>
 

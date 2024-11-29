@@ -12,7 +12,12 @@ jQuery(function ($) {
     const $modalConfirmDeleteQuestion = $('#modalConfirmDeleteQuestion');
     const $btnConfirmDeleteQuestion = $('#btnConfirmDeleteQuestion');
 
+    initUI();
     reOrderingQuestionNumber();
+
+    // Initialize validation plugin
+    const $form = $('#formCreateOrUpdateSurvey');
+    $form.validate();
 
     $btnAddMoreQuestion.click(function () {
         // Copy and create new question card from hidden question card
@@ -93,8 +98,7 @@ jQuery(function ($) {
     });
 
     $btnSubmitSurvey.click(function () {
-        const $form = $('#formCreateOrUpdateSurvey');
-        $form.validate();
+        reOrderingQuestionNumber();
 
         $('#title').rules('add', {
             required: true,
@@ -127,8 +131,46 @@ jQuery(function ($) {
             }
         });
 
+        $('.iptChoice').each(function () {
+            const $container = $(this).closest('.sms-question-card');
+            if (!$container.hasClass('d-none')) {
+                $(this).rules('add', {
+                    required: true,
+                    messages: {
+                        required: 'Answer is required',
+                    },
+                });
+            }
+        });
+
         handleSubmitForm($form);
     });
+
+    function initUI() {
+        $('.sms-question-card').each(function () {
+            // Hide un-needed element
+            const questionType = $(this).find('.questionType').val();
+            if (questionType == 2) {
+                // 2 ~ free description
+
+                $(this).find('.choiceNumberContainer').addClass('d-none');
+                $(this).find('.choiceContainer').addClass('d-none');
+            }
+
+            // Display the answer
+            const $hiddenAnswer = $(this).find('.hidden-answer');
+
+            if ($hiddenAnswer.length && $hiddenAnswer.val().length > 0) {
+                let decodedString = $hiddenAnswer.val().replace(/&quot;/g, '"');
+                let arrChoices = JSON.parse(decodedString);
+
+                const $iptChoice = $(this).find('.iptChoice');
+                $iptChoice.each(function (index) {
+                    $(this).val(arrChoices[index]);
+                });
+            }
+        });
+    }
 
     function reOrderingQuestionNumber() {
         // Re-ordering question number
@@ -153,16 +195,21 @@ jQuery(function ($) {
             $inputTitle = $(this).find('.questionTitle');
             $inputDescription = $(this).find('.questionDescription');
             $selectType = $(this).find('.questionType');
+            $inputAnswer = $(this).find('.iptChoice');
 
             $inputTitle.attr('name', `questions[${index}][title]`);
             $inputDescription.attr('name', `questions[${index}][description]`);
             $selectType.attr('name', `questions[${index}][type]`);
 
+            $inputAnswer.each(function (i) {
+                $(this).attr('name', `questions[${index}|${i}][choice]`);
+            });
+
             index++;
         });
 
         // Hide icon move up of the first card
-        const $firstQuestionCard = $questionCard.first();
+        const $firstQuestionCard = $questionCard.eq(1);
         const $iconMoveUp = $firstQuestionCard.find('.iconMoveUp');
         $iconMoveUp.hide();
 
@@ -223,7 +270,6 @@ jQuery(function ($) {
 
     function handleSubmitForm(formElement) {
         if (formElement.valid()) {
-            console.log('valid form');
             // Collect form data
             const formDataArray = $(formElement).serializeArray();
             let surveyTitle = formDataArray.find((item) => item.name === 'title').value;
@@ -235,17 +281,23 @@ jQuery(function ($) {
                 const $container = $(this).closest('.sms-question-card');
 
                 if (!$container.hasClass('d-none')) {
-                    const questionNumber = index + 1;
-
                     const questionTitle = $(this).find('.questionTitle').val();
                     const questionDescription = $(this).find('.questionDescription').val();
                     const questionType = $(this).find('.questionType').val();
+                    const choices = $(this).find('.iptChoice');
+
+                    let listChoices = [];
+                    choices.each(function () {
+                        const choiceValue = $(this).val();
+                        listChoices.push(choiceValue);
+                    });
 
                     const question = {
                         title: questionTitle,
                         description: questionDescription,
                         type: questionType,
-                        number: questionNumber,
+                        number: index,
+                        choices: listChoices,
                     };
 
                     listQuestion.push(question);
@@ -257,6 +309,9 @@ jQuery(function ($) {
                 title: surveyTitle,
                 questions: listQuestion,
             };
+
+            console.log(surveyData);
+            // return;
 
             $.ajax({
                 url: url,

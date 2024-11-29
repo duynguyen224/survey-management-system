@@ -15,6 +15,8 @@ class QuestionCard extends Component
     public string $questionTitle;
     public string $questionDescription;
     public string $questionType;
+    public string $numberOfChoices;
+    public string $choices;
 
     /**
      * Create a new component instance.
@@ -26,7 +28,9 @@ class QuestionCard extends Component
         string $questionNumber = '',
         string $questionTitle = '',
         string $questionDescription = '',
-        string $questionType = ''
+        string $questionType = '',
+        string $numberOfChoices = '1',
+        string $choices = ''
     ) {
         $this->id = $id;
         $this->extraClass = $extraClass;
@@ -35,6 +39,8 @@ class QuestionCard extends Component
         $this->questionTitle = $questionTitle;
         $this->questionDescription = $questionDescription;
         $this->questionType = $questionType;
+        $this->numberOfChoices = intval($numberOfChoices);
+        $this->choices = $choices;
     }
 
     /**
@@ -42,6 +48,7 @@ class QuestionCard extends Component
      */
     public function render(): View|Closure|string
     {
+        // dd('test');
         return view('components.survey.question-card');
     }
 }

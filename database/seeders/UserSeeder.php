@@ -16,13 +16,15 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
+        $password = bcrypt('123456');
+
         // System admin
         $systemAdminRole = Role::findByName(RoleEnum::SYSTEM_ADMIN->value);
-        
+
         $systemAdmin = User::create([
             'name' => 'system.admin',
             'email' => 'system.admin@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => $password,
             'type' => UserType::ADMIN_USER->value,
         ]);
 
@@ -36,7 +38,7 @@ class UserSeeder extends Seeder
         $arisAdmin = User::create([
             'name' => 'aris.admin',
             'email' => 'aris.admin@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => $password,
             'type' => UserType::ADMIN_USER->value,
             'agency_id' => $arisAgency->id,
         ]);
@@ -47,7 +49,7 @@ class UserSeeder extends Seeder
         $fptAdmin = User::create([
             'name' => 'fpt.admin',
             'email' => 'fpt.admin@gmail.com',
-            'password' => bcrypt('123456'),
+            'password' => $password,
             'type' => UserType::ADMIN_USER->value,
             'agency_id' => $fptAgency->id,
         ]);
@@ -58,7 +60,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => 'ARIS user' . $i,
                 'email' => 'aris.user' . $i . '@gmail.com',
-                'password' => bcrypt('123456'),
+                'password' => $password,
                 'type' => UserType::ADMIN_USER->value,
                 'agency_id' => $arisAgency->id,
             ]);
@@ -69,7 +71,7 @@ class UserSeeder extends Seeder
             User::create([
                 'name' => 'FPT user' . $i,
                 'email' => 'fpt.user' . $i . '@gmail.com',
-                'password' => bcrypt('123456'),
+                'password' => $password,
                 'type' => UserType::ADMIN_USER->value,
                 'agency_id' => $fptAgency->id,
             ]);

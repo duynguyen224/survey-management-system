@@ -1,5 +1,6 @@
 <div class="sms-question-card {{ $extraClass }} row" id='question-card-{{ $id }}'
     data-question-id='{{ $questionId }}' data-question-number='{{ $questionNumber }}'>
+
     <div class="col-1">
         <span class="sms-question-number">1</span>
     </div>
@@ -25,40 +26,47 @@
             <label for="name" class="col-2 col-form-label">QS type</label>
             <div class="col-3">
                 <select class="form-select questionType">
-                    <option value="0">Single answer</option>
-                    <option value="1" selected>Multiple answer</option>
-                    <option value="2">Free text</option>
+                    <option value="0" {{ $questionType == 0 ? 'selected' : '' }}>Single answer</option>
+                    <option value="1" {{ $questionType == 1 ? 'selected' : '' }}>Multiple answer</option>
+                    <option value="2" {{ $questionType == 2 ? 'selected' : '' }}>Free text</option>
                 </select>
             </div>
+
 
             <div class="col-3 choiceNumberContainer">
                 <div class="d-flex gap-2">
                     <label for="name" class="col-form-label">Number</label>
                     <select class="form-select selectNumberOfChoice">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
+                        <option value="1" {{ $numberOfChoices == 1 ? 'selected' : '' }}>1</option>
+                        <option value="2" {{ $numberOfChoices == 2 ? 'selected' : '' }}>2</option>
+                        <option value="3" {{ $numberOfChoices == 3 ? 'selected' : '' }}>3</option>
+                        <option value="4" {{ $numberOfChoices == 4 ? 'selected' : '' }}>4</option>
+                        <option value="5" {{ $numberOfChoices == 5 ? 'selected' : '' }}>5</option>
+                        <option value="6" {{ $numberOfChoices == 6 ? 'selected' : '' }}>6</option>
                     </select>
                 </div>
             </div>
+
         </div>
+
 
         <div class="mb-4 row choiceContainer">
             <label for="name" class="col-2 col-form-label">Choices</label>
             <div class="col-10">
                 <div class="sms-answer-container">
-                    <div class="col-3 sms-answer">
-                        <div class="input-group">
-                            <span class="input-group-text">1</span>
-                            <input type="text" class="form-control iptChoice">
+                    <input type="hidden" class="hidden-answer" value="{{ $choices }}">
+                    @for ($i = 0; $i < $numberOfChoices; $i++)
+                        <div class="col-3 sms-answer">
+                            <div class="input-group">
+                                <span class="input-group-text">{{ $i + 1 }}</span>
+                                <input type="text" class="form-control iptChoice">
+                            </div>
                         </div>
-                    </div>
+                    @endfor
                 </div>
             </div>
         </div>
+
 
         {{-- <div class="mb-4 row branchContainer">
             <label for="name" class="col-2 col-form-label">Branch</label>

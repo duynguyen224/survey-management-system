@@ -6,6 +6,7 @@ use App\DTOs\SmsApiResponse;
 use App\DTOs\SmsWebResponse;
 use App\DTOs\Survey\SurveyUpSertRequest;
 use App\Enums\HttpStatusCode;
+use App\Enums\QuestionType;
 use App\Enums\Status;
 use App\Models\Survey;
 use App\Models\SurveyDetail;
@@ -88,6 +89,8 @@ class SurveyService implements ISurveyService
             'question_description' => $question['description'],
             'question_type' => $question['type'],
             'question_number' => $question['number'],
+            'number_of_choices' => $question['type'] != QuestionType::FREE_DESCRIPTION->value ? count($question['choices']) : 1,
+            'choices' => $question['type'] != QuestionType::FREE_DESCRIPTION->value ? json_encode($question['choices'], true) : json_encode('', true),
             'survey_id' => $survey->id
           ]);
         }
@@ -122,6 +125,8 @@ class SurveyService implements ISurveyService
               'question_description' => $question['description'],
               'question_type' => $question['type'],
               'question_number' => $question['number'],
+              'number_of_choices' => $question['type'] != QuestionType::FREE_DESCRIPTION->value ? count($question['choices']) : 1,
+              'choices' => $question['type'] != QuestionType::FREE_DESCRIPTION->value ? json_encode($question['choices'], true) : json_encode('', true),
               'survey_id' => $survey->id
             ]);
           }

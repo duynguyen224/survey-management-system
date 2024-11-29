@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\DTOs\Survey\SurveyUpSertRequest;
-use App\Models\Survey;
 use App\Services\Interfaces\ISurveyService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
