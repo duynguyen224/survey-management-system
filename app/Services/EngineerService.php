@@ -125,9 +125,11 @@ class EngineerService implements IEngineerService
 
       // Find engineers based on ids
       $engineers = User::whereIn('id', $engineerIds)->get();
+      $deadline = $surveyResponseDeadline;
+      $surveyUrl = route('surveys.detail', ['survey' => $survey]);
       // Send mail for engineers
       foreach ($engineers as $engineer) {
-        $this->mailService->sendSurvey($engineer->email, $survey);
+        $this->mailService->sendSurvey($engineer, $survey, $deadline, $surveyUrl);
       }
     }
 

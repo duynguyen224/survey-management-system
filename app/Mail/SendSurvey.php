@@ -3,8 +3,8 @@
 namespace App\Mail;
 
 use App\Models\Survey;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -15,13 +15,19 @@ class SendSurvey extends Mailable
     use Queueable, SerializesModels;
 
     private Survey $survey;
+    private User $engineer;
+    private $deadline;
+    private $surveyUrl;
 
     /**
      * Create a new message instance.
      */
-    public function __construct(Survey $survey)
+    public function __construct(User $engineer, Survey $survey, $deadline, $surveyUrl)
     {
+        $this->engineer = $engineer;
         $this->survey = $survey;
+        $this->deadline = $deadline;
+        $this->surveyUrl = $surveyUrl;
     }
 
     /**
@@ -42,7 +48,10 @@ class SendSurvey extends Mailable
         return new Content(
             view: 'mail.survey',
             with: [
-                'survey' => $this->survey, // Pass the survey data to the view
+                'survey' => $this->survey,
+                'engineer' => $this->engineer,
+                'deadline' => $this->deadline,
+                'surveyUrl' => $this->surveyUrl,
             ],
         );
     }

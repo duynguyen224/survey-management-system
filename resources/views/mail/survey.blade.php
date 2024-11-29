@@ -7,8 +7,12 @@
   <title>Survey Management System</title>
 </head>
 <body>
-  <h1>Hello, here is the mail from Survey Management System</h1>
-  <p>Survey id: {{ $survey->id }}</p>
-  <p>Survey title: {{ $survey->title }}</p>
+  <p>Dear {{ $engineer->name }}</p>
+  <p>Your new survey</p>
+  <ul>
+    <li>Deadline: {{ $deadline }}</li>
+    <li>Link: {{ $surveyUrl }}</li>
+  </ul>
+  <p>Please complete your survey on time.</p>
 </body>
 </html>

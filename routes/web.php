@@ -53,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/create', 'create')->name('surveys.create');
                 Route::get('/{survey}', 'show')->name('surveys.show');
                 Route::get('/{survey}/edit', 'edit')->name('surveys.edit');
+                Route::get('/{survey}/detail', 'detail')->name('surveys.detail');
                 Route::post('/create-or-update/{id}', 'createOrUpdate')->name('surveys.createOrUpdate');
                 Route::delete('/{survey}', 'destroy')->name('surveys.destroy');
             });
