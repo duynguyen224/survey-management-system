@@ -6,9 +6,9 @@
 
 @section('breadcrumb')
     <x-breadcrumb>
-        <a href="{{ route('surveys.index') }}">List</a>
+        {{-- <a href="{{ route('surveys.index') }}">List</a>
         <span>></span>
-        <span>Detail</span>
+        <span>Detail</span> --}}
     </x-breadcrumb>
 @endsection
 

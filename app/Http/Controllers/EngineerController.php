@@ -22,8 +22,9 @@ class EngineerController extends Controller
         $res = $this->engineerService->index($request);
         $engineers = $res->getData()['engineers'];
         $surveys = $res->getData()['surveys'];
+        $companies = $res->getData()['companies'];
 
-        return view('engineer.index', compact('engineers', 'surveys'));
+        return view('engineer.index', compact('engineers', 'surveys', 'companies'));
     }
 
     public function createOrUpdate(EngineerUpSertRequest $request, $id)

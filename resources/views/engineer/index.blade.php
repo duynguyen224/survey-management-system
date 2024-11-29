@@ -28,7 +28,7 @@
                     <x-form-controls.checkbox id="checkAll" />
                 </th>
                 <th width="15%">Name</th>
-                <th width="20%">Email</th>
+                <th width="25%">Email</th>
                 <th width="20%">Registration date</th>
                 <th>First company</th>
                 <th width="3%" class="text-center">
@@ -52,7 +52,14 @@
                         <td>
                             <x-calendar-icon-text text="{{ $item->created_at }}" />
                         </td>
-                        <td>???</td>
+                        <td>
+                            <select class="form-select">
+                                <option value="">Select company</option>
+                                @foreach ($companies as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
                         <td>
                             <x-dropdown-menu>
                                 <x-dropdown-item id="" class="btnEdit" icon='<i class="bx bx-edit-alt me-1"></i>'

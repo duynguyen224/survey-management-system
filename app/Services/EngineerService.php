@@ -9,6 +9,7 @@ use App\DTOs\Survey\SurveySendInBulkRequest;
 use App\Enums\HttpStatusCode;
 use App\Enums\Status;
 use App\Enums\UserType;
+use App\Models\Company;
 use App\Models\Survey;
 use App\Models\SurveyAssignment;
 use App\Models\User;
@@ -43,10 +44,14 @@ class EngineerService implements IEngineerService
     // Get surveys
     $surveys = Survey::where('agency_id', Auth::user()->agency_id)->get();
 
+    // Get companies
+    $companies = Company::where('agency_id', Auth::user()->agency_id)->get();
+
     // Prepare data
     $data = [
       'engineers' => $engineers,
       'surveys' => $surveys,
+      'companies' => $companies,
     ];
 
     // Prepare response
